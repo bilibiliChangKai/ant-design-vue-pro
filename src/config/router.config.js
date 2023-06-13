@@ -21,19 +21,19 @@ export const asyncRouterMap = [
         name: 'base',
         redirect: '/base/test-page',
         component: RouteView,
-        meta: { title: '基础功能', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+        meta: { title: '基础绘图', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
         children: [
           {
             path: '/base/test-page',
             name: 'TestPage',
-            component: () => import('@/views/other/TestPage'),
-            meta: { title: '文生图', keepAlive: true }
+            component: () => import('@/views/other/TextToImage'),
+            meta: { title: '风景图绘制', keepAlive: true }
           },
           {
             path: '/base/test-image',
             name: 'TestImage',
             component: () => import('@/views/other/TestImage'),
-            meta: { title: '图片收藏', keepAlive: true }
+            meta: { title: '其他功能', keepAlive: true }
           }
         ]
       },

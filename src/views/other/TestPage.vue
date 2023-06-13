@@ -42,6 +42,7 @@
 
 <script>
 import { ref } from 'vue'
+import { getImageUrl } from '@/api/test'
 
 export default {
   setup () {
@@ -68,32 +69,19 @@ export default {
         return
       }
 
-      try {
-        // 调用后台接口，根据用户输入的关键字和选择的模型、子模型获取图片链接
-        const response = await fetch('your-api-url', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: selectedModel.value,
-            subModel: selectedSubModel.value,
-            keyword: keyword.value
-          })
-        })
+      // 调用后台接口，根据用户输入的关键字和选择的模型、子模型获取图片链接
+      const formData = JSON.stringify({
+          model: selectedModel.value,
+          subModel: selectedSubModel.value,
+          keyword: keyword.value
+      })
 
-        if (response.ok) {
-          const data = await response.json()
-          imageUrl.value = data.imageUrl
-        } else {
-          // alert('获取图片失败，请稍后重试')
+      getImageUrl(formData).then(res => {
+          imageUrl.value = res.data.imageUrl
+      }).catch(err => {
+          console.error(`load user err: ${err.message}`)
           imageUrl.value = 'https://p.qqan.com/up/2021-4/16196618195008329.jpg'
-        }
-      } catch (error) {
-        console.error('Error fetching image:', error)
-        // alert('获取图片失败，请稍后重试')
-        imageUrl.value = 'https://p.qqan.com/up/2021-4/16196618195008329.jpg'
-      }
+      })
     }
 
     return {
