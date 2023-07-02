@@ -69,6 +69,8 @@ export default {
         return
       }
 
+      debugger
+
       // 调用后台接口，根据用户输入的关键字和选择的模型、子模型获取图片链接
       const formData = JSON.stringify({
           model: selectedModel.value,

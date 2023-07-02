@@ -1,3 +1,7 @@
+import md5 from 'md5'
+import aesjs from 'aes-js'
+const pkcs7 = require('pkcs7')
+
 export function timeFix () {
   const time = new Date()
   const hour = time.getHours()
@@ -8,6 +12,65 @@ export function welcome () {
   const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
   const index = Math.floor(Math.random() * arr.length)
   return arr[index]
+}
+
+function generateRandomString () {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let randomString = ''
+
+  for (let i = 0; i < 16; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length)
+    randomString += characters[randomIndex]
+  }
+
+  return randomString
+}
+
+function encryptAES (data, key) {
+  // 将密钥转换为字节数组
+  const keyBytes = aesjs.utils.hex.toBytes(key)
+
+  // 创建 AES-CBC 加密器
+  const aesCbc = new aesjs.ModeOfOperation.cbc(keyBytes)
+
+  // 将明文数据转换为字节数组
+  const dataBytes = aesjs.utils.utf8.toBytes(data)
+
+  // 对数据进行填充
+  const paddedBytes = pkcs7.pad(dataBytes)
+
+  // 对填充后的数据进行加密
+  const encryptedBytes = aesCbc.encrypt(paddedBytes)
+
+  // 将加密后的字节数组转换为十六进制字符串
+  const encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes)
+
+  return encryptedHex
+}
+
+export function encryptPsw (username, password) {
+  debugger
+
+  const md5Psw = md5(password)
+  const S2 = md5(username + md5Psw)
+
+  // 生成随机密钥和时间戳
+  const randomKey = generateRandomString() // 随机生成 16 个字节的密钥
+  const timestamp = Date.now()
+
+  // 拼接需要加密的数据
+  const dataToEncrypt = username + ';' + md5Psw + ';' + timestamp + ';' + randomKey
+
+  // 使用 AES 加密数据
+  const encryptedData = encryptAES(dataToEncrypt, S2)
+
+  // const aesKey = Buffer.from(S2, 'hex');
+  // const aesCtr = new aesjs.ModeOfOperation.ecb(aesKey);
+  // const encryptedBytes = aesCtr.encrypt(aesjs.utils.utf8.toBytes(dataToEncrypt));
+  // const encryptedData = aesjs.utils.hex.fromBytes(encryptedBytes);
+
+  console.log('A1:', encryptedData)
+  return encryptedData
 }
 
 /**

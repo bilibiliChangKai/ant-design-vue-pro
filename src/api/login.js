@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { login_proto } from '@/proto/login_proto/login_proto'
 
 const userApi = {
   Login: '/auth/login',
@@ -24,14 +25,22 @@ const userApi = {
  * @param parameter
  * @returns {*}
  */
-export function login (parameter) {
+export function login (loginData) {
+  debugger
+  const req = login_proto.UserPswdLoginReq.create()
+  req.phoneNumber = loginData.username
+  req.a1 = loginData.password
+
+  const bts = login_proto.UserPswdLoginReq.encode(req).finish()
+
   return request({
     url: userApi.Login,
     method: 'post',
-    data: parameter
+    data: bts
   })
 }
 
+// #TODO: 发送验证码
 export function getSmsCaptcha (parameter) {
   return request({
     url: userApi.SendSms,

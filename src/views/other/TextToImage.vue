@@ -33,8 +33,7 @@
                 v-for="(style, index) in styles"
                 :key="index"
               >
-                <a-card-meta :title="style.name" />
-                <a-image :src="style.image" style="width: 100%" />
+                <image-loader :src="style.image" style="width: 60%" />
                 <div class="image-description">{{ style.description }}</div>
               </div>
             </div>
@@ -47,10 +46,8 @@
             <span class="section-title">生成结果</span>
             <div class="result-container">
               <div class="result-image">
-                <a-image :src="resultImage" fit="contain" />
-              </div>
-              <div class="thumbnail-list">
-                <a-image
+                <image-loader :src="resultImage" fit="contain" />
+                <image-loader
                   v-for="(thumbnail, index) in thumbnailList"
                   :key="index"
                   :src="thumbnail"
@@ -61,7 +58,7 @@
           </div>
 
           <div class="section">
-            <a-button type="primary" class="generate-button">立刻生成</a-button>
+            <a-button type="primary" @click="handleSubmit" class="generate-button">立刻生成</a-button>
           </div>
         </div>
       </div>
@@ -70,10 +67,39 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+import { getImageUrl } from '@/api/test'
+import { login_proto } from '@/proto/login_proto/login_proto'
+
 export default {
-  data () {
+  setup () {
+    const description = ref('')
+    const resultImage = ref('')
+
+    const handleSubmit = async () => {
+      if (!description.value) {
+        alert('请输入关键字')
+        return
+      }
+
+      debugger
+
+      var req = login_proto.UserPswdLoginReq.create()
+      req.phoneNumber = '123321123'
+
+      // 调用后台接口，根据用户输入的关键字和选择的模型、子模型获取图片链接
+      const formData = login_proto.UserPswdLoginReq.encode(req).finish()
+
+      getImageUrl(formData).then(res => {
+          resultImage.value = res.data.imageUrl
+      }).catch(err => {
+          console.error(`load user err: ${err.message}`)
+          resultImage.value = 'https://p.qqan.com/up/2021-4/16196618195008329.jpg'
+      })
+    }
+
     return {
-      description: '',
+      description: description,
       size: '512x512',
       count: 1,
       styles: [
@@ -89,12 +115,13 @@ export default {
         }
         // 添加更多风格...
       ],
-      resultImage: 'https://p.qqan.com/up/2021-4/16196618195008329.jpg',
+      resultImage: resultImage,
       thumbnailList: [
-        'https://p.qqan.com/up/2021-4/16196618195008329.jpg',
-        'https://p.qqan.com/up/2021-4/16196618195008329.jpg',
-        'https://p.qqan.com/up/2021-4/16196618195008329.jpg'
-      ]
+        // 'https://p.qqan.com/up/2021-4/16196618195008329.jpg',
+        // 'https://p.qqan.com/up/2021-4/16196618195008329.jpg',
+        // 'https://p.qqan.com/up/2021-4/16196618195008329.jpg'
+      ],
+      handleSubmit
     }
   },
   methods: {
@@ -127,17 +154,17 @@ export default {
 }
 
 .left-panel {
-  width: 30%;
+  width: 32%;
   padding-right: 16px;
 }
 
 .middle-panel {
-  width: 40%;
-  padding: 0 16px;
+  width: 28%;
+  padding: 16px 16px;
 }
 
 .right-panel {
-  width: 30%;
+  width: 40%;
   padding-left: 16px;
 }
 
@@ -183,12 +210,19 @@ export default {
 }
 
 .thumbnail-list {
+  width: 64px;
+  height: 64px;
+  background-color: #ccc;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
 }
 
 .generate-button {
-  width: 100%;
+  width: 60%;
+  display: center;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
