@@ -436,14 +436,14 @@ export namespace login_proto {
     /** Properties of a GetMachineVerifyRsp. */
     interface IGetMachineVerifyRsp {
 
+        /** GetMachineVerifyRsp retCode */
+        retCode?: (number|null);
+
         /** GetMachineVerifyRsp codeId */
         codeId?: (string|null);
 
         /** GetMachineVerifyRsp base64Img */
         base64Img?: (string|null);
-
-        /** GetMachineVerifyRsp retCode */
-        retCode?: (number|null);
     }
 
     /** Represents a GetMachineVerifyRsp. */
@@ -455,14 +455,14 @@ export namespace login_proto {
          */
         constructor(properties?: login_proto.IGetMachineVerifyRsp);
 
+        /** GetMachineVerifyRsp retCode. */
+        public retCode: number;
+
         /** GetMachineVerifyRsp codeId. */
         public codeId: string;
 
         /** GetMachineVerifyRsp base64Img. */
         public base64Img: string;
-
-        /** GetMachineVerifyRsp retCode. */
-        public retCode: number;
 
         /**
          * Creates a new GetMachineVerifyRsp instance using the specified properties.
@@ -1287,6 +1287,9 @@ export namespace login_proto {
 
         /** UserRegisterReq verCode */
         verCode?: (string|null);
+
+        /** UserRegisterReq passwd */
+        passwd?: (string|null);
     }
 
     /** Represents a UserRegisterReq. */
@@ -1303,6 +1306,9 @@ export namespace login_proto {
 
         /** UserRegisterReq verCode. */
         public verCode: string;
+
+        /** UserRegisterReq passwd. */
+        public passwd: string;
 
         /**
          * Creates a new UserRegisterReq instance using the specified properties.

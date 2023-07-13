@@ -1,23 +1,25 @@
-/* eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars */
-'use strict'
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
+"use strict";
 
-var $protobuf = require('protobufjs/minimal')
+var $protobuf = require("protobufjs/minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader; var $Writer = $protobuf.Writer; var $util = $protobuf.util
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots['default'] || ($protobuf.roots['default'] = {})
+var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.login_proto = (function () {
+$root.login_proto = (function() {
+
     /**
      * Namespace login_proto.
      * @exports login_proto
      * @namespace
      */
-    var login_proto = {}
+    var login_proto = {};
 
-    login_proto.Login = (function () {
+    login_proto.Login = (function() {
+
         /**
          * Constructs a new Login service.
          * @memberof login_proto
@@ -28,11 +30,11 @@ $root.login_proto = (function () {
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function Login (rpcImpl, requestDelimited, responseDelimited) {
-            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+        function Login(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
         }
 
-        (Login.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Login
+        (Login.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Login;
 
         /**
          * Creates new Login service using the specified rpc implementation.
@@ -44,9 +46,9 @@ $root.login_proto = (function () {
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          * @returns {Login} RPC service. Useful where requests and/or responses are streamed.
          */
-        Login.create = function create (rpcImpl, requestDelimited, responseDelimited) {
-            return new this(rpcImpl, requestDelimited, responseDelimited)
-        }
+        Login.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
 
         /**
          * Callback as used by {@link login_proto.Login#getMachineVerify}.
@@ -67,9 +69,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.getMachineVerify = function getMachineVerify (request, callback) {
-            return this.rpcCall(getMachineVerify, $root.login_proto.GetMachineVerifyReq, $root.login_proto.GetMachineVerifyRsp, request, callback)
-        }, 'name', { value: 'GetMachineVerify' })
+        Object.defineProperty(Login.prototype.getMachineVerify = function getMachineVerify(request, callback) {
+            return this.rpcCall(getMachineVerify, $root.login_proto.GetMachineVerifyReq, $root.login_proto.GetMachineVerifyRsp, request, callback);
+        }, "name", { value: "GetMachineVerify" });
 
         /**
          * Calls GetMachineVerify.
@@ -100,9 +102,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.sendMachineVerifyResult = function sendMachineVerifyResult (request, callback) {
-            return this.rpcCall(sendMachineVerifyResult, $root.login_proto.SendMachineVerifyResultReq, $root.login_proto.SendMachineVerifyResultRsp, request, callback)
-        }, 'name', { value: 'SendMachineVerifyResult' })
+        Object.defineProperty(Login.prototype.sendMachineVerifyResult = function sendMachineVerifyResult(request, callback) {
+            return this.rpcCall(sendMachineVerifyResult, $root.login_proto.SendMachineVerifyResultReq, $root.login_proto.SendMachineVerifyResultRsp, request, callback);
+        }, "name", { value: "SendMachineVerifyResult" });
 
         /**
          * Calls SendMachineVerifyResult.
@@ -133,9 +135,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.sendTextVerCode = function sendTextVerCode (request, callback) {
-            return this.rpcCall(sendTextVerCode, $root.login_proto.SendTextVerCodeReq, $root.login_proto.SendTextVerCodeRsp, request, callback)
-        }, 'name', { value: 'SendTextVerCode' })
+        Object.defineProperty(Login.prototype.sendTextVerCode = function sendTextVerCode(request, callback) {
+            return this.rpcCall(sendTextVerCode, $root.login_proto.SendTextVerCodeReq, $root.login_proto.SendTextVerCodeRsp, request, callback);
+        }, "name", { value: "SendTextVerCode" });
 
         /**
          * Calls SendTextVerCode.
@@ -166,9 +168,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.userPswdLogin = function userPswdLogin (request, callback) {
-            return this.rpcCall(userPswdLogin, $root.login_proto.UserPswdLoginReq, $root.login_proto.UserPswdLoginRsp, request, callback)
-        }, 'name', { value: 'UserPswdLogin' })
+        Object.defineProperty(Login.prototype.userPswdLogin = function userPswdLogin(request, callback) {
+            return this.rpcCall(userPswdLogin, $root.login_proto.UserPswdLoginReq, $root.login_proto.UserPswdLoginRsp, request, callback);
+        }, "name", { value: "UserPswdLogin" });
 
         /**
          * Calls UserPswdLogin.
@@ -199,9 +201,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.userPhoneLogin = function userPhoneLogin (request, callback) {
-            return this.rpcCall(userPhoneLogin, $root.login_proto.UserPhoneLoginReq, $root.login_proto.UserPhoneLoginRsp, request, callback)
-        }, 'name', { value: 'UserPhoneLogin' })
+        Object.defineProperty(Login.prototype.userPhoneLogin = function userPhoneLogin(request, callback) {
+            return this.rpcCall(userPhoneLogin, $root.login_proto.UserPhoneLoginReq, $root.login_proto.UserPhoneLoginRsp, request, callback);
+        }, "name", { value: "UserPhoneLogin" });
 
         /**
          * Calls UserPhoneLogin.
@@ -232,9 +234,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.userRegister = function userRegister (request, callback) {
-            return this.rpcCall(userRegister, $root.login_proto.UserRegisterReq, $root.login_proto.UserRegisterRsp, request, callback)
-        }, 'name', { value: 'UserRegister' })
+        Object.defineProperty(Login.prototype.userRegister = function userRegister(request, callback) {
+            return this.rpcCall(userRegister, $root.login_proto.UserRegisterReq, $root.login_proto.UserRegisterRsp, request, callback);
+        }, "name", { value: "UserRegister" });
 
         /**
          * Calls UserRegister.
@@ -265,9 +267,9 @@ $root.login_proto = (function () {
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Login.prototype.resetPswd = function resetPswd (request, callback) {
-            return this.rpcCall(resetPswd, $root.login_proto.ResetPswdReq, $root.login_proto.ResetPswdRsp, request, callback)
-        }, 'name', { value: 'ResetPswd' })
+        Object.defineProperty(Login.prototype.resetPswd = function resetPswd(request, callback) {
+            return this.rpcCall(resetPswd, $root.login_proto.ResetPswdReq, $root.login_proto.ResetPswdRsp, request, callback);
+        }, "name", { value: "ResetPswd" });
 
         /**
          * Calls ResetPswd.
@@ -279,8 +281,8 @@ $root.login_proto = (function () {
          * @variation 2
          */
 
-        return Login
-    })()
+        return Login;
+    })();
 
     /**
      * VerType enum.
@@ -291,16 +293,17 @@ $root.login_proto = (function () {
      * @property {number} RegisterVerify=2 RegisterVerify value
      * @property {number} ResetPsWdVerify=3 ResetPsWdVerify value
      */
-    login_proto.VerType = (function () {
-        var valuesById = {}; var values = Object.create(valuesById)
-        values[valuesById[0] = 'Invalid'] = 0
-        values[valuesById[1] = 'LoginVerify'] = 1
-        values[valuesById[2] = 'RegisterVerify'] = 2
-        values[valuesById[3] = 'ResetPsWdVerify'] = 3
-        return values
-    })()
+    login_proto.VerType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "Invalid"] = 0;
+        values[valuesById[1] = "LoginVerify"] = 1;
+        values[valuesById[2] = "RegisterVerify"] = 2;
+        values[valuesById[3] = "ResetPsWdVerify"] = 3;
+        return values;
+    })();
 
-    login_proto.EmptyReq = (function () {
+    login_proto.EmptyReq = (function() {
+
         /**
          * Properties of an EmptyReq.
          * @memberof login_proto
@@ -315,12 +318,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IEmptyReq=} [properties] Properties to set
          */
-        function EmptyReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function EmptyReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -331,9 +333,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IEmptyReq=} [properties] Properties to set
          * @returns {login_proto.EmptyReq} EmptyReq instance
          */
-        EmptyReq.create = function create (properties) {
-            return new EmptyReq(properties)
-        }
+        EmptyReq.create = function create(properties) {
+            return new EmptyReq(properties);
+        };
 
         /**
          * Encodes the specified EmptyReq message. Does not implicitly {@link login_proto.EmptyReq.verify|verify} messages.
@@ -344,10 +346,11 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EmptyReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            return writer
-        }
+        EmptyReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
 
         /**
          * Encodes the specified EmptyReq message, length delimited. Does not implicitly {@link login_proto.EmptyReq.verify|verify} messages.
@@ -358,9 +361,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EmptyReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        EmptyReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes an EmptyReq message from the specified reader or buffer.
@@ -373,19 +376,20 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmptyReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.EmptyReq()
+        EmptyReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.EmptyReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes an EmptyReq message from the specified reader or buffer, length delimited.
@@ -397,10 +401,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmptyReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        EmptyReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies an EmptyReq message.
@@ -410,10 +415,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        EmptyReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            return null
-        }
+        EmptyReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
 
         /**
          * Creates an EmptyReq message from a plain object. Also converts values to their respective internal types.
@@ -423,10 +429,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.EmptyReq} EmptyReq
          */
-        EmptyReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.EmptyReq) { return object }
-            return new $root.login_proto.EmptyReq()
-        }
+        EmptyReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.EmptyReq)
+                return object;
+            return new $root.login_proto.EmptyReq();
+        };
 
         /**
          * Creates a plain object from an EmptyReq message. Also converts values to other types if specified.
@@ -437,9 +444,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        EmptyReq.toObject = function toObject () {
-            return {}
-        }
+        EmptyReq.toObject = function toObject() {
+            return {};
+        };
 
         /**
          * Converts this EmptyReq to JSON.
@@ -448,14 +455,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        EmptyReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        EmptyReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return EmptyReq
-    })()
+        return EmptyReq;
+    })();
 
-    login_proto.EmptyRsp = (function () {
+    login_proto.EmptyRsp = (function() {
+
         /**
          * Properties of an EmptyRsp.
          * @memberof login_proto
@@ -470,12 +478,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IEmptyRsp=} [properties] Properties to set
          */
-        function EmptyRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function EmptyRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -486,9 +493,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IEmptyRsp=} [properties] Properties to set
          * @returns {login_proto.EmptyRsp} EmptyRsp instance
          */
-        EmptyRsp.create = function create (properties) {
-            return new EmptyRsp(properties)
-        }
+        EmptyRsp.create = function create(properties) {
+            return new EmptyRsp(properties);
+        };
 
         /**
          * Encodes the specified EmptyRsp message. Does not implicitly {@link login_proto.EmptyRsp.verify|verify} messages.
@@ -499,10 +506,11 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EmptyRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            return writer
-        }
+        EmptyRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
 
         /**
          * Encodes the specified EmptyRsp message, length delimited. Does not implicitly {@link login_proto.EmptyRsp.verify|verify} messages.
@@ -513,9 +521,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EmptyRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        EmptyRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes an EmptyRsp message from the specified reader or buffer.
@@ -528,19 +536,20 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmptyRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.EmptyRsp()
+        EmptyRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.EmptyRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes an EmptyRsp message from the specified reader or buffer, length delimited.
@@ -552,10 +561,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmptyRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        EmptyRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies an EmptyRsp message.
@@ -565,10 +575,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        EmptyRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            return null
-        }
+        EmptyRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
 
         /**
          * Creates an EmptyRsp message from a plain object. Also converts values to their respective internal types.
@@ -578,10 +589,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.EmptyRsp} EmptyRsp
          */
-        EmptyRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.EmptyRsp) { return object }
-            return new $root.login_proto.EmptyRsp()
-        }
+        EmptyRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.EmptyRsp)
+                return object;
+            return new $root.login_proto.EmptyRsp();
+        };
 
         /**
          * Creates a plain object from an EmptyRsp message. Also converts values to other types if specified.
@@ -592,9 +604,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        EmptyRsp.toObject = function toObject () {
-            return {}
-        }
+        EmptyRsp.toObject = function toObject() {
+            return {};
+        };
 
         /**
          * Converts this EmptyRsp to JSON.
@@ -603,14 +615,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        EmptyRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        EmptyRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return EmptyRsp
-    })()
+        return EmptyRsp;
+    })();
 
-    login_proto.GetMachineVerifyReq = (function () {
+    login_proto.GetMachineVerifyReq = (function() {
+
         /**
          * Properties of a GetMachineVerifyReq.
          * @memberof login_proto
@@ -625,12 +638,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IGetMachineVerifyReq=} [properties] Properties to set
          */
-        function GetMachineVerifyReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function GetMachineVerifyReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -641,9 +653,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IGetMachineVerifyReq=} [properties] Properties to set
          * @returns {login_proto.GetMachineVerifyReq} GetMachineVerifyReq instance
          */
-        GetMachineVerifyReq.create = function create (properties) {
-            return new GetMachineVerifyReq(properties)
-        }
+        GetMachineVerifyReq.create = function create(properties) {
+            return new GetMachineVerifyReq(properties);
+        };
 
         /**
          * Encodes the specified GetMachineVerifyReq message. Does not implicitly {@link login_proto.GetMachineVerifyReq.verify|verify} messages.
@@ -654,10 +666,11 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetMachineVerifyReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            return writer
-        }
+        GetMachineVerifyReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
 
         /**
          * Encodes the specified GetMachineVerifyReq message, length delimited. Does not implicitly {@link login_proto.GetMachineVerifyReq.verify|verify} messages.
@@ -668,9 +681,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetMachineVerifyReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        GetMachineVerifyReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a GetMachineVerifyReq message from the specified reader or buffer.
@@ -683,19 +696,20 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetMachineVerifyReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.GetMachineVerifyReq()
+        GetMachineVerifyReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.GetMachineVerifyReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a GetMachineVerifyReq message from the specified reader or buffer, length delimited.
@@ -707,10 +721,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetMachineVerifyReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        GetMachineVerifyReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a GetMachineVerifyReq message.
@@ -720,10 +735,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        GetMachineVerifyReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            return null
-        }
+        GetMachineVerifyReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
 
         /**
          * Creates a GetMachineVerifyReq message from a plain object. Also converts values to their respective internal types.
@@ -733,10 +749,11 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.GetMachineVerifyReq} GetMachineVerifyReq
          */
-        GetMachineVerifyReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.GetMachineVerifyReq) { return object }
-            return new $root.login_proto.GetMachineVerifyReq()
-        }
+        GetMachineVerifyReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.GetMachineVerifyReq)
+                return object;
+            return new $root.login_proto.GetMachineVerifyReq();
+        };
 
         /**
          * Creates a plain object from a GetMachineVerifyReq message. Also converts values to other types if specified.
@@ -747,9 +764,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GetMachineVerifyReq.toObject = function toObject () {
-            return {}
-        }
+        GetMachineVerifyReq.toObject = function toObject() {
+            return {};
+        };
 
         /**
          * Converts this GetMachineVerifyReq to JSON.
@@ -758,21 +775,22 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        GetMachineVerifyReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        GetMachineVerifyReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return GetMachineVerifyReq
-    })()
+        return GetMachineVerifyReq;
+    })();
 
-    login_proto.GetMachineVerifyRsp = (function () {
+    login_proto.GetMachineVerifyRsp = (function() {
+
         /**
          * Properties of a GetMachineVerifyRsp.
          * @memberof login_proto
          * @interface IGetMachineVerifyRsp
+         * @property {number|null} [retCode] GetMachineVerifyRsp retCode
          * @property {string|null} [codeId] GetMachineVerifyRsp codeId
          * @property {string|null} [base64Img] GetMachineVerifyRsp base64Img
-         * @property {number|null} [retCode] GetMachineVerifyRsp retCode
          */
 
         /**
@@ -783,29 +801,12 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IGetMachineVerifyRsp=} [properties] Properties to set
          */
-        function GetMachineVerifyRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function GetMachineVerifyRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * GetMachineVerifyRsp codeId.
-         * @member {string} codeId
-         * @memberof login_proto.GetMachineVerifyRsp
-         * @instance
-         */
-        GetMachineVerifyRsp.prototype.codeId = ''
-
-        /**
-         * GetMachineVerifyRsp base64Img.
-         * @member {string} base64Img
-         * @memberof login_proto.GetMachineVerifyRsp
-         * @instance
-         */
-        GetMachineVerifyRsp.prototype.base64Img = ''
 
         /**
          * GetMachineVerifyRsp retCode.
@@ -813,7 +814,23 @@ $root.login_proto = (function () {
          * @memberof login_proto.GetMachineVerifyRsp
          * @instance
          */
-        GetMachineVerifyRsp.prototype.retCode = 0
+        GetMachineVerifyRsp.prototype.retCode = 0;
+
+        /**
+         * GetMachineVerifyRsp codeId.
+         * @member {string} codeId
+         * @memberof login_proto.GetMachineVerifyRsp
+         * @instance
+         */
+        GetMachineVerifyRsp.prototype.codeId = "";
+
+        /**
+         * GetMachineVerifyRsp base64Img.
+         * @member {string} base64Img
+         * @memberof login_proto.GetMachineVerifyRsp
+         * @instance
+         */
+        GetMachineVerifyRsp.prototype.base64Img = "";
 
         /**
          * Creates a new GetMachineVerifyRsp instance using the specified properties.
@@ -823,9 +840,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IGetMachineVerifyRsp=} [properties] Properties to set
          * @returns {login_proto.GetMachineVerifyRsp} GetMachineVerifyRsp instance
          */
-        GetMachineVerifyRsp.create = function create (properties) {
-            return new GetMachineVerifyRsp(properties)
-        }
+        GetMachineVerifyRsp.create = function create(properties) {
+            return new GetMachineVerifyRsp(properties);
+        };
 
         /**
          * Encodes the specified GetMachineVerifyRsp message. Does not implicitly {@link login_proto.GetMachineVerifyRsp.verify|verify} messages.
@@ -836,13 +853,17 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetMachineVerifyRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.codeId != null && Object.hasOwnProperty.call(message, 'codeId')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.codeId) }
-            if (message.base64Img != null && Object.hasOwnProperty.call(message, 'base64Img')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.base64Img) }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 3, wireType 0 = */24).int32(message.retCode) }
-            return writer
-        }
+        GetMachineVerifyRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            if (message.codeId != null && Object.hasOwnProperty.call(message, "codeId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.codeId);
+            if (message.base64Img != null && Object.hasOwnProperty.call(message, "base64Img"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.base64Img);
+            return writer;
+        };
 
         /**
          * Encodes the specified GetMachineVerifyRsp message, length delimited. Does not implicitly {@link login_proto.GetMachineVerifyRsp.verify|verify} messages.
@@ -853,9 +874,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetMachineVerifyRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        GetMachineVerifyRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a GetMachineVerifyRsp message from the specified reader or buffer.
@@ -868,28 +889,29 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetMachineVerifyRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.GetMachineVerifyRsp()
+        GetMachineVerifyRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.GetMachineVerifyRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.codeId = reader.string()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 case 2:
-                    message.base64Img = reader.string()
-                    break
+                    message.codeId = reader.string();
+                    break;
                 case 3:
-                    message.retCode = reader.int32()
-                    break
+                    message.base64Img = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a GetMachineVerifyRsp message from the specified reader or buffer, length delimited.
@@ -901,10 +923,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetMachineVerifyRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        GetMachineVerifyRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a GetMachineVerifyRsp message.
@@ -914,19 +937,20 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        GetMachineVerifyRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.codeId != null && message.hasOwnProperty('codeId')) {
- if (!$util.isString(message.codeId)) { return 'codeId: string expected' }
-}
-            if (message.base64Img != null && message.hasOwnProperty('base64Img')) {
- if (!$util.isString(message.base64Img)) { return 'base64Img: string expected' }
-}
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        GetMachineVerifyRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            if (message.codeId != null && message.hasOwnProperty("codeId"))
+                if (!$util.isString(message.codeId))
+                    return "codeId: string expected";
+            if (message.base64Img != null && message.hasOwnProperty("base64Img"))
+                if (!$util.isString(message.base64Img))
+                    return "base64Img: string expected";
+            return null;
+        };
 
         /**
          * Creates a GetMachineVerifyRsp message from a plain object. Also converts values to their respective internal types.
@@ -936,14 +960,18 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.GetMachineVerifyRsp} GetMachineVerifyRsp
          */
-        GetMachineVerifyRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.GetMachineVerifyRsp) { return object }
-            var message = new $root.login_proto.GetMachineVerifyRsp()
-            if (object.codeId != null) { message.codeId = String(object.codeId) }
-            if (object.base64Img != null) { message.base64Img = String(object.base64Img) }
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        GetMachineVerifyRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.GetMachineVerifyRsp)
+                return object;
+            var message = new $root.login_proto.GetMachineVerifyRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            if (object.codeId != null)
+                message.codeId = String(object.codeId);
+            if (object.base64Img != null)
+                message.base64Img = String(object.base64Img);
+            return message;
+        };
 
         /**
          * Creates a plain object from a GetMachineVerifyRsp message. Also converts values to other types if specified.
@@ -954,19 +982,23 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GetMachineVerifyRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        GetMachineVerifyRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.codeId = ''
-                object.base64Img = ''
-                object.retCode = 0
+                object.retCode = 0;
+                object.codeId = "";
+                object.base64Img = "";
             }
-            if (message.codeId != null && message.hasOwnProperty('codeId')) { object.codeId = message.codeId }
-            if (message.base64Img != null && message.hasOwnProperty('base64Img')) { object.base64Img = message.base64Img }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            if (message.codeId != null && message.hasOwnProperty("codeId"))
+                object.codeId = message.codeId;
+            if (message.base64Img != null && message.hasOwnProperty("base64Img"))
+                object.base64Img = message.base64Img;
+            return object;
+        };
 
         /**
          * Converts this GetMachineVerifyRsp to JSON.
@@ -975,14 +1007,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        GetMachineVerifyRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        GetMachineVerifyRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return GetMachineVerifyRsp
-    })()
+        return GetMachineVerifyRsp;
+    })();
 
-    login_proto.SendMachineVerifyResultReq = (function () {
+    login_proto.SendMachineVerifyResultReq = (function() {
+
         /**
          * Properties of a SendMachineVerifyResultReq.
          * @memberof login_proto
@@ -999,12 +1032,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.ISendMachineVerifyResultReq=} [properties] Properties to set
          */
-        function SendMachineVerifyResultReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function SendMachineVerifyResultReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1013,7 +1045,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendMachineVerifyResultReq
          * @instance
          */
-        SendMachineVerifyResultReq.prototype.codeId = ''
+        SendMachineVerifyResultReq.prototype.codeId = "";
 
         /**
          * SendMachineVerifyResultReq ans.
@@ -1021,7 +1053,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendMachineVerifyResultReq
          * @instance
          */
-        SendMachineVerifyResultReq.prototype.ans = ''
+        SendMachineVerifyResultReq.prototype.ans = "";
 
         /**
          * Creates a new SendMachineVerifyResultReq instance using the specified properties.
@@ -1031,9 +1063,9 @@ $root.login_proto = (function () {
          * @param {login_proto.ISendMachineVerifyResultReq=} [properties] Properties to set
          * @returns {login_proto.SendMachineVerifyResultReq} SendMachineVerifyResultReq instance
          */
-        SendMachineVerifyResultReq.create = function create (properties) {
-            return new SendMachineVerifyResultReq(properties)
-        }
+        SendMachineVerifyResultReq.create = function create(properties) {
+            return new SendMachineVerifyResultReq(properties);
+        };
 
         /**
          * Encodes the specified SendMachineVerifyResultReq message. Does not implicitly {@link login_proto.SendMachineVerifyResultReq.verify|verify} messages.
@@ -1044,12 +1076,15 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendMachineVerifyResultReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.codeId != null && Object.hasOwnProperty.call(message, 'codeId')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.codeId) }
-            if (message.ans != null && Object.hasOwnProperty.call(message, 'ans')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.ans) }
-            return writer
-        }
+        SendMachineVerifyResultReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.codeId != null && Object.hasOwnProperty.call(message, "codeId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.codeId);
+            if (message.ans != null && Object.hasOwnProperty.call(message, "ans"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.ans);
+            return writer;
+        };
 
         /**
          * Encodes the specified SendMachineVerifyResultReq message, length delimited. Does not implicitly {@link login_proto.SendMachineVerifyResultReq.verify|verify} messages.
@@ -1060,9 +1095,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendMachineVerifyResultReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        SendMachineVerifyResultReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a SendMachineVerifyResultReq message from the specified reader or buffer.
@@ -1075,25 +1110,26 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendMachineVerifyResultReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.SendMachineVerifyResultReq()
+        SendMachineVerifyResultReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.SendMachineVerifyResultReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.codeId = reader.string()
-                    break
+                    message.codeId = reader.string();
+                    break;
                 case 2:
-                    message.ans = reader.string()
-                    break
+                    message.ans = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a SendMachineVerifyResultReq message from the specified reader or buffer, length delimited.
@@ -1105,10 +1141,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendMachineVerifyResultReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        SendMachineVerifyResultReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a SendMachineVerifyResultReq message.
@@ -1118,16 +1155,17 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SendMachineVerifyResultReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.codeId != null && message.hasOwnProperty('codeId')) {
- if (!$util.isString(message.codeId)) { return 'codeId: string expected' }
-}
-            if (message.ans != null && message.hasOwnProperty('ans')) {
- if (!$util.isString(message.ans)) { return 'ans: string expected' }
-}
-            return null
-        }
+        SendMachineVerifyResultReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.codeId != null && message.hasOwnProperty("codeId"))
+                if (!$util.isString(message.codeId))
+                    return "codeId: string expected";
+            if (message.ans != null && message.hasOwnProperty("ans"))
+                if (!$util.isString(message.ans))
+                    return "ans: string expected";
+            return null;
+        };
 
         /**
          * Creates a SendMachineVerifyResultReq message from a plain object. Also converts values to their respective internal types.
@@ -1137,13 +1175,16 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.SendMachineVerifyResultReq} SendMachineVerifyResultReq
          */
-        SendMachineVerifyResultReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.SendMachineVerifyResultReq) { return object }
-            var message = new $root.login_proto.SendMachineVerifyResultReq()
-            if (object.codeId != null) { message.codeId = String(object.codeId) }
-            if (object.ans != null) { message.ans = String(object.ans) }
-            return message
-        }
+        SendMachineVerifyResultReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.SendMachineVerifyResultReq)
+                return object;
+            var message = new $root.login_proto.SendMachineVerifyResultReq();
+            if (object.codeId != null)
+                message.codeId = String(object.codeId);
+            if (object.ans != null)
+                message.ans = String(object.ans);
+            return message;
+        };
 
         /**
          * Creates a plain object from a SendMachineVerifyResultReq message. Also converts values to other types if specified.
@@ -1154,17 +1195,20 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SendMachineVerifyResultReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        SendMachineVerifyResultReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.codeId = ''
-                object.ans = ''
+                object.codeId = "";
+                object.ans = "";
             }
-            if (message.codeId != null && message.hasOwnProperty('codeId')) { object.codeId = message.codeId }
-            if (message.ans != null && message.hasOwnProperty('ans')) { object.ans = message.ans }
-            return object
-        }
+            if (message.codeId != null && message.hasOwnProperty("codeId"))
+                object.codeId = message.codeId;
+            if (message.ans != null && message.hasOwnProperty("ans"))
+                object.ans = message.ans;
+            return object;
+        };
 
         /**
          * Converts this SendMachineVerifyResultReq to JSON.
@@ -1173,14 +1217,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        SendMachineVerifyResultReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        SendMachineVerifyResultReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return SendMachineVerifyResultReq
-    })()
+        return SendMachineVerifyResultReq;
+    })();
 
-    login_proto.SendMachineVerifyResultRsp = (function () {
+    login_proto.SendMachineVerifyResultRsp = (function() {
+
         /**
          * Properties of a SendMachineVerifyResultRsp.
          * @memberof login_proto
@@ -1196,12 +1241,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.ISendMachineVerifyResultRsp=} [properties] Properties to set
          */
-        function SendMachineVerifyResultRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function SendMachineVerifyResultRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1210,7 +1254,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendMachineVerifyResultRsp
          * @instance
          */
-        SendMachineVerifyResultRsp.prototype.retCode = 0
+        SendMachineVerifyResultRsp.prototype.retCode = 0;
 
         /**
          * Creates a new SendMachineVerifyResultRsp instance using the specified properties.
@@ -1220,9 +1264,9 @@ $root.login_proto = (function () {
          * @param {login_proto.ISendMachineVerifyResultRsp=} [properties] Properties to set
          * @returns {login_proto.SendMachineVerifyResultRsp} SendMachineVerifyResultRsp instance
          */
-        SendMachineVerifyResultRsp.create = function create (properties) {
-            return new SendMachineVerifyResultRsp(properties)
-        }
+        SendMachineVerifyResultRsp.create = function create(properties) {
+            return new SendMachineVerifyResultRsp(properties);
+        };
 
         /**
          * Encodes the specified SendMachineVerifyResultRsp message. Does not implicitly {@link login_proto.SendMachineVerifyResultRsp.verify|verify} messages.
@@ -1233,11 +1277,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendMachineVerifyResultRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 2, wireType 0 = */16).int32(message.retCode) }
-            return writer
-        }
+        SendMachineVerifyResultRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified SendMachineVerifyResultRsp message, length delimited. Does not implicitly {@link login_proto.SendMachineVerifyResultRsp.verify|verify} messages.
@@ -1248,9 +1294,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendMachineVerifyResultRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        SendMachineVerifyResultRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a SendMachineVerifyResultRsp message from the specified reader or buffer.
@@ -1263,22 +1309,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendMachineVerifyResultRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.SendMachineVerifyResultRsp()
+        SendMachineVerifyResultRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.SendMachineVerifyResultRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
-                    message.retCode = reader.int32()
-                    break
+                case 1:
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a SendMachineVerifyResultRsp message from the specified reader or buffer, length delimited.
@@ -1290,10 +1337,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendMachineVerifyResultRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        SendMachineVerifyResultRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a SendMachineVerifyResultRsp message.
@@ -1303,13 +1351,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SendMachineVerifyResultRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        SendMachineVerifyResultRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a SendMachineVerifyResultRsp message from a plain object. Also converts values to their respective internal types.
@@ -1319,12 +1368,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.SendMachineVerifyResultRsp} SendMachineVerifyResultRsp
          */
-        SendMachineVerifyResultRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.SendMachineVerifyResultRsp) { return object }
-            var message = new $root.login_proto.SendMachineVerifyResultRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        SendMachineVerifyResultRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.SendMachineVerifyResultRsp)
+                return object;
+            var message = new $root.login_proto.SendMachineVerifyResultRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a SendMachineVerifyResultRsp message. Also converts values to other types if specified.
@@ -1335,13 +1386,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SendMachineVerifyResultRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        SendMachineVerifyResultRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this SendMachineVerifyResultRsp to JSON.
@@ -1350,14 +1404,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        SendMachineVerifyResultRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        SendMachineVerifyResultRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return SendMachineVerifyResultRsp
-    })()
+        return SendMachineVerifyResultRsp;
+    })();
 
-    login_proto.SendTextVerCodeReq = (function () {
+    login_proto.SendTextVerCodeReq = (function() {
+
         /**
          * Properties of a SendTextVerCodeReq.
          * @memberof login_proto
@@ -1374,12 +1429,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.ISendTextVerCodeReq=} [properties] Properties to set
          */
-        function SendTextVerCodeReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function SendTextVerCodeReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1388,7 +1442,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendTextVerCodeReq
          * @instance
          */
-        SendTextVerCodeReq.prototype.phoneNumber = ''
+        SendTextVerCodeReq.prototype.phoneNumber = "";
 
         /**
          * SendTextVerCodeReq verType.
@@ -1396,7 +1450,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendTextVerCodeReq
          * @instance
          */
-        SendTextVerCodeReq.prototype.verType = 0
+        SendTextVerCodeReq.prototype.verType = 0;
 
         /**
          * Creates a new SendTextVerCodeReq instance using the specified properties.
@@ -1406,9 +1460,9 @@ $root.login_proto = (function () {
          * @param {login_proto.ISendTextVerCodeReq=} [properties] Properties to set
          * @returns {login_proto.SendTextVerCodeReq} SendTextVerCodeReq instance
          */
-        SendTextVerCodeReq.create = function create (properties) {
-            return new SendTextVerCodeReq(properties)
-        }
+        SendTextVerCodeReq.create = function create(properties) {
+            return new SendTextVerCodeReq(properties);
+        };
 
         /**
          * Encodes the specified SendTextVerCodeReq message. Does not implicitly {@link login_proto.SendTextVerCodeReq.verify|verify} messages.
@@ -1419,12 +1473,15 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendTextVerCodeReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, 'phoneNumber')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.phoneNumber) }
-            if (message.verType != null && Object.hasOwnProperty.call(message, 'verType')) { writer.uint32(/* id 2, wireType 0 = */16).int32(message.verType) }
-            return writer
-        }
+        SendTextVerCodeReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+            if (message.verType != null && Object.hasOwnProperty.call(message, "verType"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.verType);
+            return writer;
+        };
 
         /**
          * Encodes the specified SendTextVerCodeReq message, length delimited. Does not implicitly {@link login_proto.SendTextVerCodeReq.verify|verify} messages.
@@ -1435,9 +1492,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendTextVerCodeReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        SendTextVerCodeReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a SendTextVerCodeReq message from the specified reader or buffer.
@@ -1450,25 +1507,26 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendTextVerCodeReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.SendTextVerCodeReq()
+        SendTextVerCodeReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.SendTextVerCodeReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.phoneNumber = reader.string()
-                    break
+                    message.phoneNumber = reader.string();
+                    break;
                 case 2:
-                    message.verType = reader.int32()
-                    break
+                    message.verType = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a SendTextVerCodeReq message from the specified reader or buffer, length delimited.
@@ -1480,10 +1538,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendTextVerCodeReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        SendTextVerCodeReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a SendTextVerCodeReq message.
@@ -1493,24 +1552,24 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SendTextVerCodeReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) {
- if (!$util.isString(message.phoneNumber)) { return 'phoneNumber: string expected' }
-}
-            if (message.verType != null && message.hasOwnProperty('verType')) {
- switch (message.verType) {
+        SendTextVerCodeReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                if (!$util.isString(message.phoneNumber))
+                    return "phoneNumber: string expected";
+            if (message.verType != null && message.hasOwnProperty("verType"))
+                switch (message.verType) {
                 default:
-                    return 'verType: enum value expected'
+                    return "verType: enum value expected";
                 case 0:
                 case 1:
                 case 2:
                 case 3:
-                    break
+                    break;
                 }
-}
-            return null
-        }
+            return null;
+        };
 
         /**
          * Creates a SendTextVerCodeReq message from a plain object. Also converts values to their respective internal types.
@@ -1520,30 +1579,32 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.SendTextVerCodeReq} SendTextVerCodeReq
          */
-        SendTextVerCodeReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.SendTextVerCodeReq) { return object }
-            var message = new $root.login_proto.SendTextVerCodeReq()
-            if (object.phoneNumber != null) { message.phoneNumber = String(object.phoneNumber) }
+        SendTextVerCodeReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.SendTextVerCodeReq)
+                return object;
+            var message = new $root.login_proto.SendTextVerCodeReq();
+            if (object.phoneNumber != null)
+                message.phoneNumber = String(object.phoneNumber);
             switch (object.verType) {
-            case 'Invalid':
+            case "Invalid":
             case 0:
-                message.verType = 0
-                break
-            case 'LoginVerify':
+                message.verType = 0;
+                break;
+            case "LoginVerify":
             case 1:
-                message.verType = 1
-                break
-            case 'RegisterVerify':
+                message.verType = 1;
+                break;
+            case "RegisterVerify":
             case 2:
-                message.verType = 2
-                break
-            case 'ResetPsWdVerify':
+                message.verType = 2;
+                break;
+            case "ResetPsWdVerify":
             case 3:
-                message.verType = 3
-                break
+                message.verType = 3;
+                break;
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Creates a plain object from a SendTextVerCodeReq message. Also converts values to other types if specified.
@@ -1554,17 +1615,20 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SendTextVerCodeReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        SendTextVerCodeReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.phoneNumber = ''
-                object.verType = options.enums === String ? 'Invalid' : 0
+                object.phoneNumber = "";
+                object.verType = options.enums === String ? "Invalid" : 0;
             }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) { object.phoneNumber = message.phoneNumber }
-            if (message.verType != null && message.hasOwnProperty('verType')) { object.verType = options.enums === String ? $root.login_proto.VerType[message.verType] : message.verType }
-            return object
-        }
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                object.phoneNumber = message.phoneNumber;
+            if (message.verType != null && message.hasOwnProperty("verType"))
+                object.verType = options.enums === String ? $root.login_proto.VerType[message.verType] : message.verType;
+            return object;
+        };
 
         /**
          * Converts this SendTextVerCodeReq to JSON.
@@ -1573,14 +1637,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        SendTextVerCodeReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        SendTextVerCodeReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return SendTextVerCodeReq
-    })()
+        return SendTextVerCodeReq;
+    })();
 
-    login_proto.SendTextVerCodeRsp = (function () {
+    login_proto.SendTextVerCodeRsp = (function() {
+
         /**
          * Properties of a SendTextVerCodeRsp.
          * @memberof login_proto
@@ -1596,12 +1661,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.ISendTextVerCodeRsp=} [properties] Properties to set
          */
-        function SendTextVerCodeRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function SendTextVerCodeRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1610,7 +1674,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.SendTextVerCodeRsp
          * @instance
          */
-        SendTextVerCodeRsp.prototype.retCode = 0
+        SendTextVerCodeRsp.prototype.retCode = 0;
 
         /**
          * Creates a new SendTextVerCodeRsp instance using the specified properties.
@@ -1620,9 +1684,9 @@ $root.login_proto = (function () {
          * @param {login_proto.ISendTextVerCodeRsp=} [properties] Properties to set
          * @returns {login_proto.SendTextVerCodeRsp} SendTextVerCodeRsp instance
          */
-        SendTextVerCodeRsp.create = function create (properties) {
-            return new SendTextVerCodeRsp(properties)
-        }
+        SendTextVerCodeRsp.create = function create(properties) {
+            return new SendTextVerCodeRsp(properties);
+        };
 
         /**
          * Encodes the specified SendTextVerCodeRsp message. Does not implicitly {@link login_proto.SendTextVerCodeRsp.verify|verify} messages.
@@ -1633,11 +1697,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendTextVerCodeRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 1, wireType 0 = */8).int32(message.retCode) }
-            return writer
-        }
+        SendTextVerCodeRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified SendTextVerCodeRsp message, length delimited. Does not implicitly {@link login_proto.SendTextVerCodeRsp.verify|verify} messages.
@@ -1648,9 +1714,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SendTextVerCodeRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        SendTextVerCodeRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a SendTextVerCodeRsp message from the specified reader or buffer.
@@ -1663,22 +1729,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendTextVerCodeRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.SendTextVerCodeRsp()
+        SendTextVerCodeRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.SendTextVerCodeRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.retCode = reader.int32()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a SendTextVerCodeRsp message from the specified reader or buffer, length delimited.
@@ -1690,10 +1757,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SendTextVerCodeRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        SendTextVerCodeRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a SendTextVerCodeRsp message.
@@ -1703,13 +1771,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SendTextVerCodeRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        SendTextVerCodeRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a SendTextVerCodeRsp message from a plain object. Also converts values to their respective internal types.
@@ -1719,12 +1788,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.SendTextVerCodeRsp} SendTextVerCodeRsp
          */
-        SendTextVerCodeRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.SendTextVerCodeRsp) { return object }
-            var message = new $root.login_proto.SendTextVerCodeRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        SendTextVerCodeRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.SendTextVerCodeRsp)
+                return object;
+            var message = new $root.login_proto.SendTextVerCodeRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a SendTextVerCodeRsp message. Also converts values to other types if specified.
@@ -1735,13 +1806,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SendTextVerCodeRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        SendTextVerCodeRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this SendTextVerCodeRsp to JSON.
@@ -1750,14 +1824,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        SendTextVerCodeRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        SendTextVerCodeRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return SendTextVerCodeRsp
-    })()
+        return SendTextVerCodeRsp;
+    })();
 
-    login_proto.UserPswdLoginReq = (function () {
+    login_proto.UserPswdLoginReq = (function() {
+
         /**
          * Properties of a UserPswdLoginReq.
          * @memberof login_proto
@@ -1774,12 +1849,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserPswdLoginReq=} [properties] Properties to set
          */
-        function UserPswdLoginReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserPswdLoginReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1788,7 +1862,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPswdLoginReq
          * @instance
          */
-        UserPswdLoginReq.prototype.phoneNumber = ''
+        UserPswdLoginReq.prototype.phoneNumber = "";
 
         /**
          * UserPswdLoginReq a1.
@@ -1796,7 +1870,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPswdLoginReq
          * @instance
          */
-        UserPswdLoginReq.prototype.a1 = ''
+        UserPswdLoginReq.prototype.a1 = "";
 
         /**
          * Creates a new UserPswdLoginReq instance using the specified properties.
@@ -1806,9 +1880,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserPswdLoginReq=} [properties] Properties to set
          * @returns {login_proto.UserPswdLoginReq} UserPswdLoginReq instance
          */
-        UserPswdLoginReq.create = function create (properties) {
-            return new UserPswdLoginReq(properties)
-        }
+        UserPswdLoginReq.create = function create(properties) {
+            return new UserPswdLoginReq(properties);
+        };
 
         /**
          * Encodes the specified UserPswdLoginReq message. Does not implicitly {@link login_proto.UserPswdLoginReq.verify|verify} messages.
@@ -1819,12 +1893,15 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPswdLoginReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, 'phoneNumber')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.phoneNumber) }
-            if (message.a1 != null && Object.hasOwnProperty.call(message, 'a1')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.a1) }
-            return writer
-        }
+        UserPswdLoginReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+            if (message.a1 != null && Object.hasOwnProperty.call(message, "a1"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.a1);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserPswdLoginReq message, length delimited. Does not implicitly {@link login_proto.UserPswdLoginReq.verify|verify} messages.
@@ -1835,9 +1912,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPswdLoginReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserPswdLoginReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserPswdLoginReq message from the specified reader or buffer.
@@ -1850,25 +1927,26 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPswdLoginReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserPswdLoginReq()
+        UserPswdLoginReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserPswdLoginReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.phoneNumber = reader.string()
-                    break
+                    message.phoneNumber = reader.string();
+                    break;
                 case 2:
-                    message.a1 = reader.string()
-                    break
+                    message.a1 = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserPswdLoginReq message from the specified reader or buffer, length delimited.
@@ -1880,10 +1958,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPswdLoginReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserPswdLoginReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserPswdLoginReq message.
@@ -1893,16 +1972,17 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserPswdLoginReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) {
- if (!$util.isString(message.phoneNumber)) { return 'phoneNumber: string expected' }
-}
-            if (message.a1 != null && message.hasOwnProperty('a1')) {
- if (!$util.isString(message.a1)) { return 'a1: string expected' }
-}
-            return null
-        }
+        UserPswdLoginReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                if (!$util.isString(message.phoneNumber))
+                    return "phoneNumber: string expected";
+            if (message.a1 != null && message.hasOwnProperty("a1"))
+                if (!$util.isString(message.a1))
+                    return "a1: string expected";
+            return null;
+        };
 
         /**
          * Creates a UserPswdLoginReq message from a plain object. Also converts values to their respective internal types.
@@ -1912,13 +1992,16 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserPswdLoginReq} UserPswdLoginReq
          */
-        UserPswdLoginReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserPswdLoginReq) { return object }
-            var message = new $root.login_proto.UserPswdLoginReq()
-            if (object.phoneNumber != null) { message.phoneNumber = String(object.phoneNumber) }
-            if (object.a1 != null) { message.a1 = String(object.a1) }
-            return message
-        }
+        UserPswdLoginReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserPswdLoginReq)
+                return object;
+            var message = new $root.login_proto.UserPswdLoginReq();
+            if (object.phoneNumber != null)
+                message.phoneNumber = String(object.phoneNumber);
+            if (object.a1 != null)
+                message.a1 = String(object.a1);
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserPswdLoginReq message. Also converts values to other types if specified.
@@ -1929,17 +2012,20 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserPswdLoginReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        UserPswdLoginReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.phoneNumber = ''
-                object.a1 = ''
+                object.phoneNumber = "";
+                object.a1 = "";
             }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) { object.phoneNumber = message.phoneNumber }
-            if (message.a1 != null && message.hasOwnProperty('a1')) { object.a1 = message.a1 }
-            return object
-        }
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                object.phoneNumber = message.phoneNumber;
+            if (message.a1 != null && message.hasOwnProperty("a1"))
+                object.a1 = message.a1;
+            return object;
+        };
 
         /**
          * Converts this UserPswdLoginReq to JSON.
@@ -1948,14 +2034,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserPswdLoginReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserPswdLoginReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserPswdLoginReq
-    })()
+        return UserPswdLoginReq;
+    })();
 
-    login_proto.UserPswdLoginRsp = (function () {
+    login_proto.UserPswdLoginRsp = (function() {
+
         /**
          * Properties of a UserPswdLoginRsp.
          * @memberof login_proto
@@ -1971,12 +2058,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserPswdLoginRsp=} [properties] Properties to set
          */
-        function UserPswdLoginRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserPswdLoginRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -1985,7 +2071,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPswdLoginRsp
          * @instance
          */
-        UserPswdLoginRsp.prototype.retCode = 0
+        UserPswdLoginRsp.prototype.retCode = 0;
 
         /**
          * Creates a new UserPswdLoginRsp instance using the specified properties.
@@ -1995,9 +2081,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserPswdLoginRsp=} [properties] Properties to set
          * @returns {login_proto.UserPswdLoginRsp} UserPswdLoginRsp instance
          */
-        UserPswdLoginRsp.create = function create (properties) {
-            return new UserPswdLoginRsp(properties)
-        }
+        UserPswdLoginRsp.create = function create(properties) {
+            return new UserPswdLoginRsp(properties);
+        };
 
         /**
          * Encodes the specified UserPswdLoginRsp message. Does not implicitly {@link login_proto.UserPswdLoginRsp.verify|verify} messages.
@@ -2008,11 +2094,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPswdLoginRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 1, wireType 0 = */8).int32(message.retCode) }
-            return writer
-        }
+        UserPswdLoginRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserPswdLoginRsp message, length delimited. Does not implicitly {@link login_proto.UserPswdLoginRsp.verify|verify} messages.
@@ -2023,9 +2111,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPswdLoginRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserPswdLoginRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserPswdLoginRsp message from the specified reader or buffer.
@@ -2038,22 +2126,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPswdLoginRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserPswdLoginRsp()
+        UserPswdLoginRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserPswdLoginRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.retCode = reader.int32()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserPswdLoginRsp message from the specified reader or buffer, length delimited.
@@ -2065,10 +2154,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPswdLoginRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserPswdLoginRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserPswdLoginRsp message.
@@ -2078,13 +2168,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserPswdLoginRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        UserPswdLoginRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a UserPswdLoginRsp message from a plain object. Also converts values to their respective internal types.
@@ -2094,12 +2185,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserPswdLoginRsp} UserPswdLoginRsp
          */
-        UserPswdLoginRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserPswdLoginRsp) { return object }
-            var message = new $root.login_proto.UserPswdLoginRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        UserPswdLoginRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserPswdLoginRsp)
+                return object;
+            var message = new $root.login_proto.UserPswdLoginRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserPswdLoginRsp message. Also converts values to other types if specified.
@@ -2110,13 +2203,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserPswdLoginRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        UserPswdLoginRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this UserPswdLoginRsp to JSON.
@@ -2125,14 +2221,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserPswdLoginRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserPswdLoginRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserPswdLoginRsp
-    })()
+        return UserPswdLoginRsp;
+    })();
 
-    login_proto.UserPhoneLoginReq = (function () {
+    login_proto.UserPhoneLoginReq = (function() {
+
         /**
          * Properties of a UserPhoneLoginReq.
          * @memberof login_proto
@@ -2149,12 +2246,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserPhoneLoginReq=} [properties] Properties to set
          */
-        function UserPhoneLoginReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserPhoneLoginReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -2163,7 +2259,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPhoneLoginReq
          * @instance
          */
-        UserPhoneLoginReq.prototype.phoneNumber = ''
+        UserPhoneLoginReq.prototype.phoneNumber = "";
 
         /**
          * UserPhoneLoginReq verCode.
@@ -2171,7 +2267,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPhoneLoginReq
          * @instance
          */
-        UserPhoneLoginReq.prototype.verCode = ''
+        UserPhoneLoginReq.prototype.verCode = "";
 
         /**
          * Creates a new UserPhoneLoginReq instance using the specified properties.
@@ -2181,9 +2277,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserPhoneLoginReq=} [properties] Properties to set
          * @returns {login_proto.UserPhoneLoginReq} UserPhoneLoginReq instance
          */
-        UserPhoneLoginReq.create = function create (properties) {
-            return new UserPhoneLoginReq(properties)
-        }
+        UserPhoneLoginReq.create = function create(properties) {
+            return new UserPhoneLoginReq(properties);
+        };
 
         /**
          * Encodes the specified UserPhoneLoginReq message. Does not implicitly {@link login_proto.UserPhoneLoginReq.verify|verify} messages.
@@ -2194,12 +2290,15 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPhoneLoginReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, 'phoneNumber')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.phoneNumber) }
-            if (message.verCode != null && Object.hasOwnProperty.call(message, 'verCode')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.verCode) }
-            return writer
-        }
+        UserPhoneLoginReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+            if (message.verCode != null && Object.hasOwnProperty.call(message, "verCode"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.verCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserPhoneLoginReq message, length delimited. Does not implicitly {@link login_proto.UserPhoneLoginReq.verify|verify} messages.
@@ -2210,9 +2309,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPhoneLoginReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserPhoneLoginReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserPhoneLoginReq message from the specified reader or buffer.
@@ -2225,25 +2324,26 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPhoneLoginReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserPhoneLoginReq()
+        UserPhoneLoginReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserPhoneLoginReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.phoneNumber = reader.string()
-                    break
+                    message.phoneNumber = reader.string();
+                    break;
                 case 2:
-                    message.verCode = reader.string()
-                    break
+                    message.verCode = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserPhoneLoginReq message from the specified reader or buffer, length delimited.
@@ -2255,10 +2355,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPhoneLoginReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserPhoneLoginReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserPhoneLoginReq message.
@@ -2268,16 +2369,17 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserPhoneLoginReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) {
- if (!$util.isString(message.phoneNumber)) { return 'phoneNumber: string expected' }
-}
-            if (message.verCode != null && message.hasOwnProperty('verCode')) {
- if (!$util.isString(message.verCode)) { return 'verCode: string expected' }
-}
-            return null
-        }
+        UserPhoneLoginReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                if (!$util.isString(message.phoneNumber))
+                    return "phoneNumber: string expected";
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                if (!$util.isString(message.verCode))
+                    return "verCode: string expected";
+            return null;
+        };
 
         /**
          * Creates a UserPhoneLoginReq message from a plain object. Also converts values to their respective internal types.
@@ -2287,13 +2389,16 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserPhoneLoginReq} UserPhoneLoginReq
          */
-        UserPhoneLoginReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserPhoneLoginReq) { return object }
-            var message = new $root.login_proto.UserPhoneLoginReq()
-            if (object.phoneNumber != null) { message.phoneNumber = String(object.phoneNumber) }
-            if (object.verCode != null) { message.verCode = String(object.verCode) }
-            return message
-        }
+        UserPhoneLoginReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserPhoneLoginReq)
+                return object;
+            var message = new $root.login_proto.UserPhoneLoginReq();
+            if (object.phoneNumber != null)
+                message.phoneNumber = String(object.phoneNumber);
+            if (object.verCode != null)
+                message.verCode = String(object.verCode);
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserPhoneLoginReq message. Also converts values to other types if specified.
@@ -2304,17 +2409,20 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserPhoneLoginReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        UserPhoneLoginReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.phoneNumber = ''
-                object.verCode = ''
+                object.phoneNumber = "";
+                object.verCode = "";
             }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) { object.phoneNumber = message.phoneNumber }
-            if (message.verCode != null && message.hasOwnProperty('verCode')) { object.verCode = message.verCode }
-            return object
-        }
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                object.phoneNumber = message.phoneNumber;
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                object.verCode = message.verCode;
+            return object;
+        };
 
         /**
          * Converts this UserPhoneLoginReq to JSON.
@@ -2323,14 +2431,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserPhoneLoginReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserPhoneLoginReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserPhoneLoginReq
-    })()
+        return UserPhoneLoginReq;
+    })();
 
-    login_proto.UserPhoneLoginRsp = (function () {
+    login_proto.UserPhoneLoginRsp = (function() {
+
         /**
          * Properties of a UserPhoneLoginRsp.
          * @memberof login_proto
@@ -2346,12 +2455,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserPhoneLoginRsp=} [properties] Properties to set
          */
-        function UserPhoneLoginRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserPhoneLoginRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -2360,7 +2468,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserPhoneLoginRsp
          * @instance
          */
-        UserPhoneLoginRsp.prototype.retCode = 0
+        UserPhoneLoginRsp.prototype.retCode = 0;
 
         /**
          * Creates a new UserPhoneLoginRsp instance using the specified properties.
@@ -2370,9 +2478,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserPhoneLoginRsp=} [properties] Properties to set
          * @returns {login_proto.UserPhoneLoginRsp} UserPhoneLoginRsp instance
          */
-        UserPhoneLoginRsp.create = function create (properties) {
-            return new UserPhoneLoginRsp(properties)
-        }
+        UserPhoneLoginRsp.create = function create(properties) {
+            return new UserPhoneLoginRsp(properties);
+        };
 
         /**
          * Encodes the specified UserPhoneLoginRsp message. Does not implicitly {@link login_proto.UserPhoneLoginRsp.verify|verify} messages.
@@ -2383,11 +2491,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPhoneLoginRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 1, wireType 0 = */8).int32(message.retCode) }
-            return writer
-        }
+        UserPhoneLoginRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserPhoneLoginRsp message, length delimited. Does not implicitly {@link login_proto.UserPhoneLoginRsp.verify|verify} messages.
@@ -2398,9 +2508,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPhoneLoginRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserPhoneLoginRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserPhoneLoginRsp message from the specified reader or buffer.
@@ -2413,22 +2523,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPhoneLoginRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserPhoneLoginRsp()
+        UserPhoneLoginRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserPhoneLoginRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.retCode = reader.int32()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserPhoneLoginRsp message from the specified reader or buffer, length delimited.
@@ -2440,10 +2551,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPhoneLoginRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserPhoneLoginRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserPhoneLoginRsp message.
@@ -2453,13 +2565,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserPhoneLoginRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        UserPhoneLoginRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a UserPhoneLoginRsp message from a plain object. Also converts values to their respective internal types.
@@ -2469,12 +2582,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserPhoneLoginRsp} UserPhoneLoginRsp
          */
-        UserPhoneLoginRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserPhoneLoginRsp) { return object }
-            var message = new $root.login_proto.UserPhoneLoginRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        UserPhoneLoginRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserPhoneLoginRsp)
+                return object;
+            var message = new $root.login_proto.UserPhoneLoginRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserPhoneLoginRsp message. Also converts values to other types if specified.
@@ -2485,13 +2600,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserPhoneLoginRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        UserPhoneLoginRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this UserPhoneLoginRsp to JSON.
@@ -2500,20 +2618,22 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserPhoneLoginRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserPhoneLoginRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserPhoneLoginRsp
-    })()
+        return UserPhoneLoginRsp;
+    })();
 
-    login_proto.UserRegisterReq = (function () {
+    login_proto.UserRegisterReq = (function() {
+
         /**
          * Properties of a UserRegisterReq.
          * @memberof login_proto
          * @interface IUserRegisterReq
          * @property {string|null} [phoneNumber] UserRegisterReq phoneNumber
          * @property {string|null} [verCode] UserRegisterReq verCode
+         * @property {string|null} [passwd] UserRegisterReq passwd
          */
 
         /**
@@ -2524,12 +2644,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserRegisterReq=} [properties] Properties to set
          */
-        function UserRegisterReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserRegisterReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -2538,7 +2657,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserRegisterReq
          * @instance
          */
-        UserRegisterReq.prototype.phoneNumber = ''
+        UserRegisterReq.prototype.phoneNumber = "";
 
         /**
          * UserRegisterReq verCode.
@@ -2546,7 +2665,15 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserRegisterReq
          * @instance
          */
-        UserRegisterReq.prototype.verCode = ''
+        UserRegisterReq.prototype.verCode = "";
+
+        /**
+         * UserRegisterReq passwd.
+         * @member {string} passwd
+         * @memberof login_proto.UserRegisterReq
+         * @instance
+         */
+        UserRegisterReq.prototype.passwd = "";
 
         /**
          * Creates a new UserRegisterReq instance using the specified properties.
@@ -2556,9 +2683,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserRegisterReq=} [properties] Properties to set
          * @returns {login_proto.UserRegisterReq} UserRegisterReq instance
          */
-        UserRegisterReq.create = function create (properties) {
-            return new UserRegisterReq(properties)
-        }
+        UserRegisterReq.create = function create(properties) {
+            return new UserRegisterReq(properties);
+        };
 
         /**
          * Encodes the specified UserRegisterReq message. Does not implicitly {@link login_proto.UserRegisterReq.verify|verify} messages.
@@ -2569,12 +2696,17 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserRegisterReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, 'phoneNumber')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.phoneNumber) }
-            if (message.verCode != null && Object.hasOwnProperty.call(message, 'verCode')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.verCode) }
-            return writer
-        }
+        UserRegisterReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+            if (message.verCode != null && Object.hasOwnProperty.call(message, "verCode"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.verCode);
+            if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.passwd);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserRegisterReq message, length delimited. Does not implicitly {@link login_proto.UserRegisterReq.verify|verify} messages.
@@ -2585,9 +2717,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserRegisterReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserRegisterReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserRegisterReq message from the specified reader or buffer.
@@ -2600,25 +2732,29 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserRegisterReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserRegisterReq()
+        UserRegisterReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserRegisterReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.phoneNumber = reader.string()
-                    break
+                    message.phoneNumber = reader.string();
+                    break;
                 case 2:
-                    message.verCode = reader.string()
-                    break
+                    message.verCode = reader.string();
+                    break;
+                case 3:
+                    message.passwd = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserRegisterReq message from the specified reader or buffer, length delimited.
@@ -2630,10 +2766,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserRegisterReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserRegisterReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserRegisterReq message.
@@ -2643,16 +2780,20 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserRegisterReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) {
- if (!$util.isString(message.phoneNumber)) { return 'phoneNumber: string expected' }
-}
-            if (message.verCode != null && message.hasOwnProperty('verCode')) {
- if (!$util.isString(message.verCode)) { return 'verCode: string expected' }
-}
-            return null
-        }
+        UserRegisterReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                if (!$util.isString(message.phoneNumber))
+                    return "phoneNumber: string expected";
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                if (!$util.isString(message.verCode))
+                    return "verCode: string expected";
+            if (message.passwd != null && message.hasOwnProperty("passwd"))
+                if (!$util.isString(message.passwd))
+                    return "passwd: string expected";
+            return null;
+        };
 
         /**
          * Creates a UserRegisterReq message from a plain object. Also converts values to their respective internal types.
@@ -2662,13 +2803,18 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserRegisterReq} UserRegisterReq
          */
-        UserRegisterReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserRegisterReq) { return object }
-            var message = new $root.login_proto.UserRegisterReq()
-            if (object.phoneNumber != null) { message.phoneNumber = String(object.phoneNumber) }
-            if (object.verCode != null) { message.verCode = String(object.verCode) }
-            return message
-        }
+        UserRegisterReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserRegisterReq)
+                return object;
+            var message = new $root.login_proto.UserRegisterReq();
+            if (object.phoneNumber != null)
+                message.phoneNumber = String(object.phoneNumber);
+            if (object.verCode != null)
+                message.verCode = String(object.verCode);
+            if (object.passwd != null)
+                message.passwd = String(object.passwd);
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserRegisterReq message. Also converts values to other types if specified.
@@ -2679,17 +2825,23 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserRegisterReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        UserRegisterReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.phoneNumber = ''
-                object.verCode = ''
+                object.phoneNumber = "";
+                object.verCode = "";
+                object.passwd = "";
             }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) { object.phoneNumber = message.phoneNumber }
-            if (message.verCode != null && message.hasOwnProperty('verCode')) { object.verCode = message.verCode }
-            return object
-        }
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                object.phoneNumber = message.phoneNumber;
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                object.verCode = message.verCode;
+            if (message.passwd != null && message.hasOwnProperty("passwd"))
+                object.passwd = message.passwd;
+            return object;
+        };
 
         /**
          * Converts this UserRegisterReq to JSON.
@@ -2698,14 +2850,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserRegisterReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserRegisterReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserRegisterReq
-    })()
+        return UserRegisterReq;
+    })();
 
-    login_proto.UserRegisterRsp = (function () {
+    login_proto.UserRegisterRsp = (function() {
+
         /**
          * Properties of a UserRegisterRsp.
          * @memberof login_proto
@@ -2721,12 +2874,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IUserRegisterRsp=} [properties] Properties to set
          */
-        function UserRegisterRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function UserRegisterRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -2735,7 +2887,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.UserRegisterRsp
          * @instance
          */
-        UserRegisterRsp.prototype.retCode = 0
+        UserRegisterRsp.prototype.retCode = 0;
 
         /**
          * Creates a new UserRegisterRsp instance using the specified properties.
@@ -2745,9 +2897,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IUserRegisterRsp=} [properties] Properties to set
          * @returns {login_proto.UserRegisterRsp} UserRegisterRsp instance
          */
-        UserRegisterRsp.create = function create (properties) {
-            return new UserRegisterRsp(properties)
-        }
+        UserRegisterRsp.create = function create(properties) {
+            return new UserRegisterRsp(properties);
+        };
 
         /**
          * Encodes the specified UserRegisterRsp message. Does not implicitly {@link login_proto.UserRegisterRsp.verify|verify} messages.
@@ -2758,11 +2910,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserRegisterRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 1, wireType 0 = */8).int32(message.retCode) }
-            return writer
-        }
+        UserRegisterRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified UserRegisterRsp message, length delimited. Does not implicitly {@link login_proto.UserRegisterRsp.verify|verify} messages.
@@ -2773,9 +2927,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserRegisterRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        UserRegisterRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a UserRegisterRsp message from the specified reader or buffer.
@@ -2788,22 +2942,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserRegisterRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.UserRegisterRsp()
+        UserRegisterRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.UserRegisterRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.retCode = reader.int32()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a UserRegisterRsp message from the specified reader or buffer, length delimited.
@@ -2815,10 +2970,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserRegisterRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        UserRegisterRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a UserRegisterRsp message.
@@ -2828,13 +2984,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserRegisterRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        UserRegisterRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a UserRegisterRsp message from a plain object. Also converts values to their respective internal types.
@@ -2844,12 +3001,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.UserRegisterRsp} UserRegisterRsp
          */
-        UserRegisterRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.UserRegisterRsp) { return object }
-            var message = new $root.login_proto.UserRegisterRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        UserRegisterRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.UserRegisterRsp)
+                return object;
+            var message = new $root.login_proto.UserRegisterRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a UserRegisterRsp message. Also converts values to other types if specified.
@@ -2860,13 +3019,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserRegisterRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        UserRegisterRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this UserRegisterRsp to JSON.
@@ -2875,14 +3037,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UserRegisterRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        UserRegisterRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return UserRegisterRsp
-    })()
+        return UserRegisterRsp;
+    })();
 
-    login_proto.ResetPswdReq = (function () {
+    login_proto.ResetPswdReq = (function() {
+
         /**
          * Properties of a ResetPswdReq.
          * @memberof login_proto
@@ -2900,12 +3063,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IResetPswdReq=} [properties] Properties to set
          */
-        function ResetPswdReq (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function ResetPswdReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -2914,7 +3076,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.ResetPswdReq
          * @instance
          */
-        ResetPswdReq.prototype.phoneNumber = ''
+        ResetPswdReq.prototype.phoneNumber = "";
 
         /**
          * ResetPswdReq newPw.
@@ -2922,7 +3084,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.ResetPswdReq
          * @instance
          */
-        ResetPswdReq.prototype.newPw = ''
+        ResetPswdReq.prototype.newPw = "";
 
         /**
          * ResetPswdReq verCode.
@@ -2930,7 +3092,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.ResetPswdReq
          * @instance
          */
-        ResetPswdReq.prototype.verCode = ''
+        ResetPswdReq.prototype.verCode = "";
 
         /**
          * Creates a new ResetPswdReq instance using the specified properties.
@@ -2940,9 +3102,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IResetPswdReq=} [properties] Properties to set
          * @returns {login_proto.ResetPswdReq} ResetPswdReq instance
          */
-        ResetPswdReq.create = function create (properties) {
-            return new ResetPswdReq(properties)
-        }
+        ResetPswdReq.create = function create(properties) {
+            return new ResetPswdReq(properties);
+        };
 
         /**
          * Encodes the specified ResetPswdReq message. Does not implicitly {@link login_proto.ResetPswdReq.verify|verify} messages.
@@ -2953,13 +3115,17 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ResetPswdReq.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, 'phoneNumber')) { writer.uint32(/* id 1, wireType 2 = */10).string(message.phoneNumber) }
-            if (message.newPw != null && Object.hasOwnProperty.call(message, 'newPw')) { writer.uint32(/* id 2, wireType 2 = */18).string(message.newPw) }
-            if (message.verCode != null && Object.hasOwnProperty.call(message, 'verCode')) { writer.uint32(/* id 3, wireType 2 = */26).string(message.verCode) }
-            return writer
-        }
+        ResetPswdReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+            if (message.newPw != null && Object.hasOwnProperty.call(message, "newPw"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.newPw);
+            if (message.verCode != null && Object.hasOwnProperty.call(message, "verCode"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.verCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified ResetPswdReq message, length delimited. Does not implicitly {@link login_proto.ResetPswdReq.verify|verify} messages.
@@ -2970,9 +3136,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ResetPswdReq.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        ResetPswdReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a ResetPswdReq message from the specified reader or buffer.
@@ -2985,28 +3151,29 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ResetPswdReq.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.ResetPswdReq()
+        ResetPswdReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.ResetPswdReq();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.phoneNumber = reader.string()
-                    break
+                    message.phoneNumber = reader.string();
+                    break;
                 case 2:
-                    message.newPw = reader.string()
-                    break
+                    message.newPw = reader.string();
+                    break;
                 case 3:
-                    message.verCode = reader.string()
-                    break
+                    message.verCode = reader.string();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a ResetPswdReq message from the specified reader or buffer, length delimited.
@@ -3018,10 +3185,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ResetPswdReq.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        ResetPswdReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a ResetPswdReq message.
@@ -3031,19 +3199,20 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ResetPswdReq.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) {
- if (!$util.isString(message.phoneNumber)) { return 'phoneNumber: string expected' }
-}
-            if (message.newPw != null && message.hasOwnProperty('newPw')) {
- if (!$util.isString(message.newPw)) { return 'newPw: string expected' }
-}
-            if (message.verCode != null && message.hasOwnProperty('verCode')) {
- if (!$util.isString(message.verCode)) { return 'verCode: string expected' }
-}
-            return null
-        }
+        ResetPswdReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                if (!$util.isString(message.phoneNumber))
+                    return "phoneNumber: string expected";
+            if (message.newPw != null && message.hasOwnProperty("newPw"))
+                if (!$util.isString(message.newPw))
+                    return "newPw: string expected";
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                if (!$util.isString(message.verCode))
+                    return "verCode: string expected";
+            return null;
+        };
 
         /**
          * Creates a ResetPswdReq message from a plain object. Also converts values to their respective internal types.
@@ -3053,14 +3222,18 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.ResetPswdReq} ResetPswdReq
          */
-        ResetPswdReq.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.ResetPswdReq) { return object }
-            var message = new $root.login_proto.ResetPswdReq()
-            if (object.phoneNumber != null) { message.phoneNumber = String(object.phoneNumber) }
-            if (object.newPw != null) { message.newPw = String(object.newPw) }
-            if (object.verCode != null) { message.verCode = String(object.verCode) }
-            return message
-        }
+        ResetPswdReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.ResetPswdReq)
+                return object;
+            var message = new $root.login_proto.ResetPswdReq();
+            if (object.phoneNumber != null)
+                message.phoneNumber = String(object.phoneNumber);
+            if (object.newPw != null)
+                message.newPw = String(object.newPw);
+            if (object.verCode != null)
+                message.verCode = String(object.verCode);
+            return message;
+        };
 
         /**
          * Creates a plain object from a ResetPswdReq message. Also converts values to other types if specified.
@@ -3071,19 +3244,23 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ResetPswdReq.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
+        ResetPswdReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
             if (options.defaults) {
-                object.phoneNumber = ''
-                object.newPw = ''
-                object.verCode = ''
+                object.phoneNumber = "";
+                object.newPw = "";
+                object.verCode = "";
             }
-            if (message.phoneNumber != null && message.hasOwnProperty('phoneNumber')) { object.phoneNumber = message.phoneNumber }
-            if (message.newPw != null && message.hasOwnProperty('newPw')) { object.newPw = message.newPw }
-            if (message.verCode != null && message.hasOwnProperty('verCode')) { object.verCode = message.verCode }
-            return object
-        }
+            if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                object.phoneNumber = message.phoneNumber;
+            if (message.newPw != null && message.hasOwnProperty("newPw"))
+                object.newPw = message.newPw;
+            if (message.verCode != null && message.hasOwnProperty("verCode"))
+                object.verCode = message.verCode;
+            return object;
+        };
 
         /**
          * Converts this ResetPswdReq to JSON.
@@ -3092,14 +3269,15 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        ResetPswdReq.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        ResetPswdReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return ResetPswdReq
-    })()
+        return ResetPswdReq;
+    })();
 
-    login_proto.ResetPswdRsp = (function () {
+    login_proto.ResetPswdRsp = (function() {
+
         /**
          * Properties of a ResetPswdRsp.
          * @memberof login_proto
@@ -3115,12 +3293,11 @@ $root.login_proto = (function () {
          * @constructor
          * @param {login_proto.IResetPswdRsp=} [properties] Properties to set
          */
-        function ResetPswdRsp (properties) {
-            if (properties) {
- for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
- if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-}
-}
+        function ResetPswdRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
 
         /**
@@ -3129,7 +3306,7 @@ $root.login_proto = (function () {
          * @memberof login_proto.ResetPswdRsp
          * @instance
          */
-        ResetPswdRsp.prototype.retCode = 0
+        ResetPswdRsp.prototype.retCode = 0;
 
         /**
          * Creates a new ResetPswdRsp instance using the specified properties.
@@ -3139,9 +3316,9 @@ $root.login_proto = (function () {
          * @param {login_proto.IResetPswdRsp=} [properties] Properties to set
          * @returns {login_proto.ResetPswdRsp} ResetPswdRsp instance
          */
-        ResetPswdRsp.create = function create (properties) {
-            return new ResetPswdRsp(properties)
-        }
+        ResetPswdRsp.create = function create(properties) {
+            return new ResetPswdRsp(properties);
+        };
 
         /**
          * Encodes the specified ResetPswdRsp message. Does not implicitly {@link login_proto.ResetPswdRsp.verify|verify} messages.
@@ -3152,11 +3329,13 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ResetPswdRsp.encode = function encode (message, writer) {
-            if (!writer) { writer = $Writer.create() }
-            if (message.retCode != null && Object.hasOwnProperty.call(message, 'retCode')) { writer.uint32(/* id 1, wireType 0 = */8).int32(message.retCode) }
-            return writer
-        }
+        ResetPswdRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.retCode != null && Object.hasOwnProperty.call(message, "retCode"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.retCode);
+            return writer;
+        };
 
         /**
          * Encodes the specified ResetPswdRsp message, length delimited. Does not implicitly {@link login_proto.ResetPswdRsp.verify|verify} messages.
@@ -3167,9 +3346,9 @@ $root.login_proto = (function () {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ResetPswdRsp.encodeDelimited = function encodeDelimited (message, writer) {
-            return this.encode(message, writer).ldelim()
-        }
+        ResetPswdRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
 
         /**
          * Decodes a ResetPswdRsp message from the specified reader or buffer.
@@ -3182,22 +3361,23 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ResetPswdRsp.decode = function decode (reader, length) {
-            if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-            var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.login_proto.ResetPswdRsp()
+        ResetPswdRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.login_proto.ResetPswdRsp();
             while (reader.pos < end) {
-                var tag = reader.uint32()
+                var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.retCode = reader.int32()
-                    break
+                    message.retCode = reader.int32();
+                    break;
                 default:
-                    reader.skipType(tag & 7)
-                    break
+                    reader.skipType(tag & 7);
+                    break;
                 }
             }
-            return message
-        }
+            return message;
+        };
 
         /**
          * Decodes a ResetPswdRsp message from the specified reader or buffer, length delimited.
@@ -3209,10 +3389,11 @@ $root.login_proto = (function () {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ResetPswdRsp.decodeDelimited = function decodeDelimited (reader) {
-            if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-            return this.decode(reader, reader.uint32())
-        }
+        ResetPswdRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
 
         /**
          * Verifies a ResetPswdRsp message.
@@ -3222,13 +3403,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ResetPswdRsp.verify = function verify (message) {
-            if (typeof message !== 'object' || message === null) { return 'object expected' }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) {
- if (!$util.isInteger(message.retCode)) { return 'retCode: integer expected' }
-}
-            return null
-        }
+        ResetPswdRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                if (!$util.isInteger(message.retCode))
+                    return "retCode: integer expected";
+            return null;
+        };
 
         /**
          * Creates a ResetPswdRsp message from a plain object. Also converts values to their respective internal types.
@@ -3238,12 +3420,14 @@ $root.login_proto = (function () {
          * @param {Object.<string,*>} object Plain object
          * @returns {login_proto.ResetPswdRsp} ResetPswdRsp
          */
-        ResetPswdRsp.fromObject = function fromObject (object) {
-            if (object instanceof $root.login_proto.ResetPswdRsp) { return object }
-            var message = new $root.login_proto.ResetPswdRsp()
-            if (object.retCode != null) { message.retCode = object.retCode | 0 }
-            return message
-        }
+        ResetPswdRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.login_proto.ResetPswdRsp)
+                return object;
+            var message = new $root.login_proto.ResetPswdRsp();
+            if (object.retCode != null)
+                message.retCode = object.retCode | 0;
+            return message;
+        };
 
         /**
          * Creates a plain object from a ResetPswdRsp message. Also converts values to other types if specified.
@@ -3254,13 +3438,16 @@ $root.login_proto = (function () {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ResetPswdRsp.toObject = function toObject (message, options) {
-            if (!options) { options = {} }
-            var object = {}
-            if (options.defaults) { object.retCode = 0 }
-            if (message.retCode != null && message.hasOwnProperty('retCode')) { object.retCode = message.retCode }
-            return object
-        }
+        ResetPswdRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.retCode = 0;
+            if (message.retCode != null && message.hasOwnProperty("retCode"))
+                object.retCode = message.retCode;
+            return object;
+        };
 
         /**
          * Converts this ResetPswdRsp to JSON.
@@ -3269,14 +3456,14 @@ $root.login_proto = (function () {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        ResetPswdRsp.prototype.toJSON = function toJSON () {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-        }
+        ResetPswdRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
 
-        return ResetPswdRsp
-    })()
+        return ResetPswdRsp;
+    })();
 
-    return login_proto
-})()
+    return login_proto;
+})();
 
-module.exports = $root
+module.exports = $root;
