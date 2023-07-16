@@ -58,7 +58,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use((response) => {
   // 设置一下
   debugger
-  if (response.headers[ACCESS_TOKEN] !== null) {
+  if (response.headers[ACCESS_TOKEN] !== undefined) {
     const token = response.headers[ACCESS_TOKEN]
     storage.set(ACCESS_TOKEN, token)
   } else {

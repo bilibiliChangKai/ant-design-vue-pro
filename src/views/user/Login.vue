@@ -21,7 +21,10 @@
               :placeholder="$t('user.login.username.placeholder')"
               v-decorator="[
                 'username',
-                {rules: [{ required: true, message: $t('user.userName.required') }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
+                {rules: [
+                  { required: true, message: $t('user.userName.required') ,pattern: /^1[34578]\d{9}$/ },
+                  //{ validator: handleUsernameOrEmail }
+                ], validateTrigger: 'change'}
               ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
@@ -57,6 +60,13 @@
               </a-form-item>
             </a-col>
             <a-col class="gutter-row" :span="8">
+              <Verify
+                @success="captureSuccess"
+                :mode="'pop'"
+                :captchaType="'inputNum'"
+                :imgSize="{ width: '330px', height: '155px' }"
+                ref="verify"
+              ></Verify>
               <a-button
                 class="getCaptcha"
                 tabindex="-1"
@@ -72,7 +82,7 @@
       <a-form-item>
         <a-checkbox v-decorator="['rememberMe', { valuePropName: 'checked' }]">{{ $t('user.login.remember-me') }}</a-checkbox>
         <router-link
-          :to="{ name: 'recover', params: { user: 'aaa'} }"
+          :to="{ name: 'resetPassword'}"
           class="forge-password"
           style="float: right;"
         >{{ $t('user.login.forgot-password') }}</router-link>
@@ -115,13 +125,16 @@
 
 <script>
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
+import Verify from '@/components/verifition/Verify'
 import { mapActions } from 'vuex'
 import { timeFix, encryptPsw } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
+import { login_proto } from '@/proto/login_proto/login_proto'
 
 export default {
   components: {
-    TwoStepCaptcha
+    TwoStepCaptcha,
+    Verify
   },
   data () {
     return {
@@ -153,6 +166,11 @@ export default {
     // this.requiredTwoStepCaptcha = true
   },
   methods: {
+
+    captureSuccess () {
+
+    },
+
     ...mapActions(['Login', 'Logout']),
     // handler
     handleUsernameOrEmail (rule, value, callback) {
@@ -186,13 +204,17 @@ export default {
         if (!err) {
           console.log('login form', values)
           const loginParams = { ...values }
-          delete loginParams.username
+          if (loginParams['username'] !== undefined) {
+            // 设置一下username和password
+            loginParams['username'] = values.username
+            loginParams['password'] = encryptPsw(loginParams['username'], values.password)
+          } else {
+            delete loginParams.username
 
-          // 设置一下username
-          loginParams['username'] = values.username
+            loginParams['mobile'] = values.mobile
+            loginParams['captcha'] = values.captcha
+          }
 
-          // #TODO: Password计算
-          loginParams.password = encryptPsw(loginParams['username'], values.password)
           Login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
@@ -206,11 +228,16 @@ export default {
         }
       })
     },
-    getCaptcha (e) {
+    getCaptcha () {
+      this.$refs.verify.show()
+      this.$refs.verify.refresh()
+    },
+
+    captureSuccess (e) {
       e.preventDefault()
       const { form: { validateFields }, state } = this
 
-      validateFields(['mobile'], { force: true }, (err, values) => {
+      validateFields(['mobile'], { force: true }, async (err, values) => {
         if (!err) {
           state.smsSendBtn = true
 
@@ -223,20 +250,21 @@ export default {
           }, 1000)
 
           const hide = this.$message.loading('验证码发送中..', 0)
-          getSmsCaptcha({ mobile: values.mobile }).then(res => {
+          const rsp = await getSmsCaptcha(values.mobile, login_proto.VerType.LoginVerify)
+          if (rsp !== null && rsp.ret_code === 0) {
             setTimeout(hide, 2500)
             this.$notification['success']({
               message: '提示',
-              description: '验证码获取成功，您的验证码为：' + res.result.captcha,
+              description: '验证码发送成功~，您的验证码为：' + res.result.captcha,
               duration: 8
             })
-          }).catch(err => {
+          } else {
             setTimeout(hide, 1)
             clearInterval(interval)
             state.time = 60
             state.smsSendBtn = false
             this.requestFailed(err)
-          })
+          }
         }
       })
     },

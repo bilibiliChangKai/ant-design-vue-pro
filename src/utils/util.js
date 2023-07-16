@@ -49,8 +49,6 @@ function encryptAES (data, key) {
 }
 
 export function encryptPsw (username, password) {
-  debugger
-
   const md5Psw = md5(password)
   const S2 = md5(username + md5Psw)
 

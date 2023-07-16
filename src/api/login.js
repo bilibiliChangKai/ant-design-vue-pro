@@ -25,27 +25,91 @@ const userApi = {
  * @param parameter
  * @returns {*}
  */
-export function login (loginData) {
-  debugger
-  const req = login_proto.UserPswdLoginReq.create()
-  req.phoneNumber = loginData.username
-  req.a1 = loginData.password
+export async function login (loginData) {
+  return new Promise((resolve, reject) => {
+    const usePswd = loginData['password'] !== undefined
+    debugger
+    if (usePswd) {
+      const req = login_proto.UserPswdLoginReq.create()
+      req.phoneNumber = loginData.username
+      req.a1 = loginData.password
 
-  const bts = login_proto.UserPswdLoginReq.encode(req).finish()
+      const bts = login_proto.UserPswdLoginReq.encode(req).finish()
 
-  return request({
-    url: userApi.Login,
-    method: 'post',
-    data: bts
+      request({
+        url: userApi.Login,
+        method: 'post',
+        data: bts
+      }).then(rsp => {
+        var arrayBuffer = rsp // 注意：不是 oReq.responseText
+        if (arrayBuffer) {
+            const uint8Arr = new Uint8Array(arrayBuffer)
+            const data = login_proto.UserPswdLoginRsp.decode(uint8Arr, uint8Arr.length)
+            resolve(data)
+        } else {
+          resolve(null)
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        resolve(null)
+      })
+    } else {
+      const req = login_proto.UserPhoneLoginReq.create()
+      req.phoneNumber = loginData.mobile
+      req.verCode = loginData.captcha
+
+      const bts = login_proto.UserPhoneLoginReq.encode(req).finish()
+
+      request({
+        url: userApi.Login,
+        method: 'post',
+        data: bts
+      }).then(rsp => {
+        var arrayBuffer = rsp // 注意：不是 oReq.responseText
+        if (arrayBuffer) {
+            const uint8Arr = new Uint8Array(arrayBuffer)
+            const data = login_proto.UserPhoneLoginRsp.decode(uint8Arr, uint8Arr.length)
+            resolve(data)
+        } else {
+          resolve(null)
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        resolve(null)
+      })
+    }
   })
 }
 
 // #TODO: 发送验证码
-export function getSmsCaptcha (parameter) {
-  return request({
-    url: userApi.SendSms,
-    method: 'post',
-    data: parameter
+export async function getSmsCaptcha (phoneNumber, codeType) {
+  return new Promise((resolve, reject) => {
+    const req = login_proto.SendTextVerCodeReq.create()
+    req.phoneNumber = phoneNumber
+    req.verType = codeType
+
+    const bts = login_proto.SendTextVerCodeReq.encode(req).finish()
+
+    request({
+      url: userApi.SendSms,
+      method: 'post',
+      data: bts
+    }).then(rsp => {
+      var arrayBuffer = rsp // 注意：不是 oReq.responseText
+      if (arrayBuffer) {
+          const uint8Arr = new Uint8Array(arrayBuffer)
+          const data = login_proto.SendTextVerCodeRsp.decode(uint8Arr, uint8Arr.length)
+          resolve(data)
+      } else {
+        resolve(null)
+      }
+    })
+    .catch(err => {
+      console.error(err)
+      resolve(null)
+    })
   })
 }
 

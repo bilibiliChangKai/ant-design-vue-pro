@@ -1,6 +1,6 @@
 <template>
   <div class="main user-layout-register">
-    <h3><span>{{ $t('user.register.register') }}</span></h3>
+    <h3><span>{{ $t('user.reset.resetpassword') }}</span></h3>
     <a-form ref="formRegister" :form="form" id="formRegister">
       <!-- <a-form-item>
         <a-input
@@ -94,7 +94,7 @@
           class="register-button"
           :loading="registerBtn"
           @click.stop.prevent="handleSubmit"
-          :disabled="registerBtn">{{ $t('user.register.register') }}
+          :disabled="registerBtn">{{ $t('user.reset.resetpassword') }}
         </a-button>
         <router-link class="login" :to="{ name: 'login' }">{{ $t('user.register.sign-in') }}</router-link>
       </a-form-item>
@@ -105,7 +105,7 @@
 
 <script>
 import { getSmsCaptcha } from '@/api/login'
-import { register } from '@/api/register'
+import { resetPswd } from '@/api/register'
 import { deviceMixin } from '@/store/device-mixin'
 import { scorePassword } from '@/utils/util'
 import Verify from "@/components/verifition/Verify";
@@ -130,7 +130,7 @@ const levelColor = {
   3: '#52c41a'
 }
 export default {
-  name: 'Register',
+  name: 'ResetPassword',
   components: {
     Verify,
   },
@@ -220,19 +220,17 @@ export default {
       const { form: { validateFields }, state, requestFailed, $router } = this
       validateFields({ force: true }, async (err, values) => {
         if (!err) {
-          debugger
-
           state.passwordLevelChecked = false
 
-          // #TODO: 发送注册请求
-          const rsp = await register(values['mobile'], values['password'], values['capture'])
+          // #TODO: 发送重置密码的
+          const rsp = await resetPswd(values['mobile'], values['password'], values['capture'])
           if (rsp !== null && rsp.ret_code === 0) {
-            $router.push({ name: 'registerResult', params: { title:  `你的账户：${values['mobile']} 注册成功~` } })
+            $router.push({ name: 'registerResult', params: { title: `你的账户：${values['mobile']} 重置密码成功~` } })
           }
           else {
             // #TODO:
-            $router.push({ name: 'registerResult', params: { title:  `你的账户：${values['mobile']} 注册成功~` } })
-            requestFailed('注册请求')
+            $router.push({ name: 'registerResult', params: { title: `你的账户：${values['mobile']} 重置密码成功~` } })
+            requestFailed('重置密码请求')
           }
         }
       })

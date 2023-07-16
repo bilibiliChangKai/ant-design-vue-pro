@@ -30,6 +30,12 @@ export const asyncRouterMap = [
             meta: { title: '风景图绘制', keepAlive: true }
           },
           {
+            path: '/base/test-module',
+            name: 'TestModule',
+            component: () => import('@/views/other/TestModule'),
+            meta: { title: '测试组件', keepAlive: true }
+          },
+          {
             path: '/base/test-image',
             name: 'TestImage',
             component: () => import('@/views/other/TestImage'),
@@ -387,9 +393,9 @@ export const constantRouterMap = [
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult')
       },
       {
-        path: 'recover',
-        name: 'recover',
-        component: undefined
+        path: 'reset-password',
+        name: 'resetPassword',
+        component: () => import(/* webpackChunkName: "user" */ '@/views/user/ResetPassword')
       }
     ]
   },
