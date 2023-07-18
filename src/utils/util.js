@@ -29,9 +29,10 @@ function generateRandomString () {
 function encryptAES (data, key) {
   // 将密钥转换为字节数组
   const keyBytes = aesjs.utils.hex.toBytes(key)
+  const iv = aesjs.utils.hex.toBytes(key)
 
   // 创建 AES-CBC 加密器
-  const aesCbc = new aesjs.ModeOfOperation.cbc(keyBytes)
+  const aesCbc = new aesjs.ModeOfOperation.cbc(keyBytes, iv)
 
   // 将明文数据转换为字节数组
   const dataBytes = aesjs.utils.utf8.toBytes(data)
