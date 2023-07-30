@@ -1,14 +1,17 @@
-import request from '@/utils/request'
+import request from '@/utils/requestReal'
 import { login_proto } from '@/proto/login_proto/login_proto'
+import { minifyBts } from './util'
 
 const userApi = {
-  Login: '/auth/login',
-  Logout: '/auth/logout',
-  ForgePassword: '/auth/forge-password',
-  Register: '/auth/register',
-  twoStepCode: '/auth/2step-code',
-  SendSms: '/account/sms',
-  SendSmsErr: '/account/sms_err',
+  PswdLogin: '/api/user-pswd-login',
+  PhoneCodeLogin: '/api/user-phone-login',
+
+  // Logout: '/auth/logout',
+
+  //twoStepCode: '/auth/2step-code',
+  
+  SendSms: '/api/send-text-ver-code',
+
   // get my info
   UserInfo: '/user/info',
   UserMenu: '/user/nav'
@@ -28,18 +31,18 @@ const userApi = {
 export async function login (loginData) {
   return new Promise((resolve, reject) => {
     const usePswd = loginData['password'] !== undefined
-    debugger
     if (usePswd) {
       const req = login_proto.UserPswdLoginReq.create()
       req.phoneNumber = loginData.username
       req.a1 = loginData.password
 
       const bts = login_proto.UserPswdLoginReq.encode(req).finish()
+      const sendBts = minifyBts(bts)
 
       request({
-        url: userApi.Login,
+        url: userApi.PswdLogin,
         method: 'post',
-        data: bts
+        data: sendBts
       }).then(rsp => {
         var arrayBuffer = rsp // 注意：不是 oReq.responseText
         if (arrayBuffer) {
@@ -60,11 +63,12 @@ export async function login (loginData) {
       req.verCode = loginData.captcha
 
       const bts = login_proto.UserPhoneLoginReq.encode(req).finish()
+      const sendBts = minifyBts(bts)
 
       request({
-        url: userApi.Login,
+        url: userApi.PhoneCodeLogin,
         method: 'post',
-        data: bts
+        data: sendBts
       }).then(rsp => {
         var arrayBuffer = rsp // 注意：不是 oReq.responseText
         if (arrayBuffer) {
@@ -91,11 +95,12 @@ export async function getSmsCaptcha (phoneNumber, codeType) {
     req.verType = codeType
 
     const bts = login_proto.SendTextVerCodeReq.encode(req).finish()
+    const sendBts = minifyBts(bts)
 
     request({
       url: userApi.SendSms,
       method: 'post',
-      data: bts
+      data: sendBts
     }).then(rsp => {
       var arrayBuffer = rsp // 注意：不是 oReq.responseText
       if (arrayBuffer) {

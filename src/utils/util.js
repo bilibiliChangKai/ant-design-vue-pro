@@ -1,5 +1,6 @@
 import md5 from 'md5'
 import aesjs from 'aes-js'
+import { Base64 } from 'js-base64'
 const pkcs7 = require('pkcs7')
 
 export function timeFix () {
@@ -44,9 +45,9 @@ function encryptAES (data, key) {
   const encryptedBytes = aesCbc.encrypt(paddedBytes)
 
   // 将加密后的字节数组转换为十六进制字符串
-  const encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes)
+  const encryptedBase64 = Base64.fromUint8Array(encryptedBytes)
 
-  return encryptedHex
+  return encryptedBase64
 }
 
 export function encryptPsw (username, password) {

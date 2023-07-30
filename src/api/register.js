@@ -1,9 +1,10 @@
 import request from '@/utils/requestReal'
 import { login_proto } from '@/proto/login_proto/login_proto'
+import { minifyBts } from './util'
 
 const userApi = {
   Register: '/api/get-machine-verify',
-  ResetPswd: '/api/send-machine-verify-result'
+  ResetPswd: '/api/reset-pswd'
 }
 
 /**
@@ -25,11 +26,12 @@ export async function register (phoneNumber, pswd, code) {
     req.verCode = code
 
     const bts = login_proto.UserRegisterReq.encode(req).finish()
+    const sendBts = minifyBts(bts)
 
     request({
       url: userApi.Register,
       method: 'post',
-      data: bts
+      data: sendBts
     }).then(rsp => {
       var arrayBuffer = rsp // 注意：不是 oReq.responseText
       if (arrayBuffer) {
@@ -54,11 +56,12 @@ export async function resetPswd (phoneNumber, pswd, code) {
     req.verCode = code
 
     const bts = login_proto.ResetPswdReq.encode(req).finish()
+    const sendBts = minifyBts(bts)
 
     request({
       url: userApi.ResetPswd,
       method: 'post',
-      data: bts
+      data: sendBts
     }).then(rsp => {
       var arrayBuffer = rsp // 注意：不是 oReq.responseText
       if (arrayBuffer) {

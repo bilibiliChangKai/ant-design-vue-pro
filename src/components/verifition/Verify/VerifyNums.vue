@@ -15,7 +15,7 @@
         </div>
         <img
           v-show="pointBackImgBase != null"
-          :src="pointBackImgBase?pointBackImgBase:defaultImg"
+          :src="pointBackImgBase?('data:image/png;base64,'+pointBackImgBase):defaultImg"
           ref="canvas"
           alt=""
           style="width:100%;height:100%;display:block"
@@ -40,7 +40,7 @@
         }"></span>
       <div class="captcha-input">
         <a-input type="text" v-model="userInput" placeholder="请输入验证码" />
-        <a-button @click="submitCaptcha">提交</a-button>
+        <a-button @click="submitCaptcha" type="primary">提交</a-button>
       </div>
     </div>
   </div>
@@ -52,6 +52,7 @@
  * */
 import { resetSize, _code_chars, _code_color1, _code_color2 } from './../utils/util'
 import { getCapture, sendCode } from '@/api/capture'
+import { SUCC_CODE, USER_WRITE_CODE_ERR } from '@/store/retcode'
 
 export default {
     name: 'VerifyPoints',
@@ -94,30 +95,20 @@ export default {
     },
     data () {
         return {
-            secretKey: '', // 后端返回的ase加密秘钥
-            checkNum: 3, // 默认需要点击的字数
-            fontPos: [], // 选中的坐标信息
-            checkPosArr: [], // 用户点击的坐标
-            num: 1, // 点击的记数
-            backToken: '', // 后端返回的token值
+            code_id: '',
+            userInput: '',
+            pointBackImgBase: '', // 后端获取到的背景图片
             setSize: {
                 imgHeight: 0,
                 imgWidth: 0,
                 barHeight: 0,
                 barWidth: 0
             },
-            tempPoints: [],
             text: '',
             barAreaColor: undefined,
             barAreaBorderColor: undefined,
             showRefresh: true,
             bindingClick: true,
-
-            // #TODO:
-            code_id: '',
-            userInput: '',
-            captchaImage: '', // 验证码图片的 URL
-            pointBackImgBase: '' // 后端获取到的背景图片
         }
     },
     computed: {
@@ -128,7 +119,6 @@ export default {
     methods: {
         refreshCaptcha () {
             // 根据实际情况生成并获取验证码图片的 URL
-
             this.refresh()
         },
 
@@ -137,8 +127,8 @@ export default {
             console.log('用户输入的验证码:', this.userInput)
 
             const rsp = await sendCode(this.code_id, this.userInput)
-            if (rsp !== null && rsp.ret_code === 0) {
-                // #TODO:
+            if (rsp !== null && rsp.retCode === SUCC_CODE) {
+                // 验证成功
                 this.barAreaColor = '#4cae4c'
                 this.barAreaBorderColor = '#5cb85c'
                 this.text = '验证成功'
@@ -146,19 +136,26 @@ export default {
                 if (this.mode == 'pop') {
                     setTimeout(() => {
                         this.$parent.clickShow = false
-                        this.refresh()
-                    }, 1500)
+                        // this.refresh()
+                    }, 3000)
                 }
-                this.$parent.$emit('success', { captchaVerification })
+                this.$parent.$emit('success')
             } else {
                 // 验证失败
                 this.$parent.$emit('error', this)
                 this.barAreaColor = '#d9534f'
                 this.barAreaBorderColor = '#d9534f'
-                this.text = '验证失败'
-                setTimeout(() => {
-                    this.refresh()
-                }, 700)
+                
+                let text = '验证失败'
+                if (rsp !== null) {
+                    if (rsp.retCode === USER_WRITE_CODE_ERR) {
+                        text += ' 输入验证码不正确'
+                    }
+                    else {
+                        text += '错误码：' + rsp.retCode
+                    }
+                }
+                this.text = text
             }
 
             // 可以在这里发送验证码验证请求等
@@ -167,126 +164,32 @@ export default {
 
         init () {
             // 加载页面
-            this.fontPos.splice(0, this.fontPos.length)
-            this.checkPosArr.splice(0, this.checkPosArr.length)
-            this.num = 1
-            // this.getPictrue();
             this.$nextTick(() => {
                 this.setSize = this.resetSize(this)	// 重新设置宽度高度
                 this.$parent.$emit('ready', this)
             })
         },
-        // canvasClick(e) {
-        //     this.checkPosArr.push(this.getMousePos(this.$refs.canvas, e));
-        //     if (this.num == this.checkNum) {
-        //         this.num = this.createPoint(this.getMousePos(this.$refs.canvas, e));
-        //         //按比例转换坐标值
-        //         this.checkPosArr = this.pointTransfrom(this.checkPosArr,this.setSize);
-        //         //等创建坐标执行完
-        //         setTimeout(() => {
-        //             // var flag = this.comparePos(this.fontPos, this.checkPosArr);
-        //             //发送后端请求
-        //             var captchaVerification = this.secretKey? aesEncrypt(this.backToken+'---'+JSON.stringify(this.checkPosArr),this.secretKey):this.backToken+'---'+JSON.stringify(this.checkPosArr)
-        //             let data = {
-        //                 captchaType:this.captchaType,
-        //                 "pointJson":this.secretKey? aesEncrypt(JSON.stringify(this.checkPosArr),this.secretKey):JSON.stringify(this.checkPosArr),
-        //                 "token":this.backToken
-        //             }
-        //             reqCheck(data).then(res=>{
-        //                 if (res.repCode == "0000") {
-        //                     this.barAreaColor = '#4cae4c'
-        //                     this.barAreaBorderColor = '#5cb85c'
-        //                     this.text = '验证成功'
-        //                     this.bindingClick = false
-        //                     if (this.mode=='pop') {
-        //                         setTimeout(()=>{
-        //                             this.$parent.clickShow = false;
-        //                             this.refresh();
-        //                         },1500)
-        //                     }
-        //                     this.$parent.$emit('success', {captchaVerification})
-        //                 }else{
-        //                     this.$parent.$emit('error', this)
-        //                     this.barAreaColor = '#d9534f'
-        //                     this.barAreaBorderColor = '#d9534f'
-        //                     this.text = '验证失败'
-        //                     setTimeout(() => {
-        //                         this.refresh();
-        //                     }, 700);
-        //                 }
-        //             })
-        //         }, 400);
-        //     }
-        //     if (this.num < this.checkNum) {
-        //         this.num = this.createPoint(this.getMousePos(this.$refs.canvas, e));
-        //     }
-        // },
-
-        // //获取坐标
-        // getMousePos: function (obj, e) {
-        //     var x = e.offsetX
-        //     var y = e.offsetY
-        //     return {x, y}
-        // },
-        // //创建坐标点
-        // createPoint: function (pos) {
-        //     this.tempPoints.push(Object.assign({}, pos))
-        //     return ++this.num;
-        // },
         refresh: function () {
-            this.tempPoints.splice(0, this.tempPoints.length)
             this.barAreaColor = '#000'
             this.barAreaBorderColor = '#ddd'
             this.bindingClick = true
-            this.fontPos.splice(0, this.fontPos.length)
-            this.checkPosArr.splice(0, this.checkPosArr.length)
-            this.num = 1
-            this.getPictrue()
+            this.text = ''
             this.showRefresh = true
+            this.userInput = ''
+            // 刷新一下图片
+            this.getPictrue()
         },
 
         // 请求背景图片和验证图片
         async getPictrue () {
-            // #TODO: 需要修改
             this.pointBackImgBase = null
 
-            this.backToken = ''
-            this.secretKey = ''
-
             const rsp = await getCapture()
-            // if (rsp !== null && rsp.retCode === 0) {
-            if (rsp !== null) {
+            if (rsp !== null && rsp.retCode === SUCC_CODE) {
                 this.code_id = rsp.codeId
                 this.pointBackImgBase = rsp.base64Img
             }
-
-            // reqGet(data).then(res=>{
-            //     if (res.repCode == "0000") {
-            //         this.pointBackImgBase = res.repData.originalImageBase64
-            //         this.backToken = res.repData.token
-            //         this.secretKey = res.repData.secretKey
-            //         this.poinTextList = res.repData.wordList
-            //         this.text = '请依次点击【' + this.poinTextList.join(",") + '】'
-            //     }else{
-            //         this.text = res.repMsg;
-            //     }
-
-            //     // 判断接口请求次数是否失效
-            //     if(res.repCode == '6201') {
-            //         this.pointBackImgBase = null
-            //     }
-            // })
         }
-        // //坐标转换函数
-        // pointTransfrom(pointArr,imgSize){
-        //     var newPointArr = pointArr.map(p=>{
-        //         let x = Math.round(310 * p.x/parseInt(imgSize.imgWidth))
-        //         let y =Math.round(155 * p.y/parseInt(imgSize.imgHeight))
-        //         return {x,y}
-        //     })
-        //     // console.log(newPointArr,"newPointArr");
-        //     return newPointArr
-        // }
     },
     watch: {
         // type变化则全面刷新

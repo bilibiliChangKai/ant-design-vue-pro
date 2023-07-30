@@ -1,5 +1,6 @@
 import request from '@/utils/requestReal'
 import { login_proto } from '@/proto/login_proto/login_proto'
+import { minifyBts } from './util'
 
 const userApi = {
   GetCapture: '/api/get-machine-verify',
@@ -49,11 +50,12 @@ export async function sendCode (id, code) {
     req.ans = code
 
     const bts = login_proto.SendMachineVerifyResultReq.encode(req).finish()
+    const sendBts = minifyBts(bts)
 
     request({
-      url: userApi.SendSms,
+      url: userApi.SendCode,
       method: 'post',
-      data: bts
+      data: sendBts
     }).then(rsp => {
       var arrayBuffer = rsp // 注意：不是 oReq.responseText
       if (arrayBuffer) {
