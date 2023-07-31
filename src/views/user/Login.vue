@@ -60,18 +60,11 @@
               </a-form-item>
             </a-col>
             <a-col class="gutter-row" :span="8">
-              <Verify
-                @success="captureSuccess"
-                :mode="'pop'"
-                :captchaType="'inputNum'"
-                :imgSize="{ width: '330px', height: '155px' }"
-                ref="verify"
-              ></Verify>
               <a-button
                 class="getCaptcha"
                 tabindex="-1"
                 :disabled="state.smsSendBtn"
-                @click.stop.prevent="getCaptcha"
+                @click.stop.prevent="clickSendSMSBtn"
                 v-text="!state.smsSendBtn && $t('user.register.get-verification-code') || (state.time+' s')"
               ></a-button>
             </a-col>
@@ -114,6 +107,14 @@
       </div>
     </a-form>
 
+    <Verify
+      @success="captureSuccess"
+      :mode="'pop'"
+      :captchaType="'inputNum'"
+      :imgSize="{ width: '330px', height: '155px' }"
+      ref="verify"
+    ></Verify>
+
     <two-step-captcha
       v-if="requiredTwoStepCaptcha"
       :visible="stepCaptchaVisible"
@@ -130,6 +131,9 @@ import { mapActions } from 'vuex'
 import { timeFix, encryptPsw } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
 import { login_proto } from '@/proto/login_proto/login_proto'
+import { SUCC_CODE, REQ_LIMITED_ERR } from '@/store/retcode'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
+import storage from 'store'
 
 export default {
   components: {
@@ -138,6 +142,8 @@ export default {
   },
   data () {
     return {
+      isPswdLoginCaptcha: false,   // 验证码类型 
+
       customActiveKey: 'tab1',
       loginBtn: false,
       // login type: 0 email, 1 username, 2 telephone
@@ -166,11 +172,6 @@ export default {
     // this.requiredTwoStepCaptcha = true
   },
   methods: {
-
-    captureSuccess () {
-
-    },
-
     ...mapActions(['Login', 'Logout']),
     // handler
     handleUsernameOrEmail (rule, value, callback) {
@@ -188,7 +189,10 @@ export default {
       // this.form.resetFields()
     },
     handleSubmit (e) {
-      e.preventDefault()
+      if (e != null) {
+        e.preventDefault()
+      }
+      
       const {
         form: { validateFields },
         state,
@@ -200,7 +204,7 @@ export default {
 
       const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
 
-      validateFields(validateFieldsKey, { force: true }, (err, values) => {
+      validateFields(validateFieldsKey, { force: true }, async (err, values) => {
         if (!err) {
           console.log('login form', values)
           const loginParams = { ...values }
@@ -208,6 +212,15 @@ export default {
             // 设置一下username和password
             loginParams['username'] = values.username
             loginParams['password'] = encryptPsw(loginParams['username'], values.password)
+
+            const token = storage.get(ACCESS_TOKEN)
+            if (token == null) {
+              this.isPswdLoginCaptcha = true
+              this.getCaptcha()
+
+              return
+            }
+
           } else {
             delete loginParams.username
 
@@ -215,26 +228,42 @@ export default {
             loginParams['captcha'] = values.captcha
           }
 
-          Login(loginParams)
-            .then((res) => this.loginSuccess(res))
-            .catch(err => this.requestFailed(err))
-            .finally(() => {
-              state.loginBtn = false
-            })
-        } else {
+          const rsp = await Login(loginParams)
+          if (rsp !== null && rsp.retCode === SUCC_CODE) {
+            // #TODO: 添加登录成功后逻辑
+            // this.loginSuccess(res)
+          } else {
+            this.requestFailed('登录请求', rsp)
+          }
+        } 
+        else {
           setTimeout(() => {
             state.loginBtn = false
           }, 600)
         }
       })
     },
+
+    clickSendSMSBtn() {
+      this.isPswdLoginCaptcha = false
+      this.getCaptcha()
+    },
+
     getCaptcha () {
       this.$refs.verify.show()
       this.$refs.verify.refresh()
     },
 
-    captureSuccess (e) {
-      e.preventDefault()
+    captureSuccess () {
+      if (this.isPswdLoginCaptcha) {
+        this.handleSubmit()
+      }
+      else {
+        this.sendSMS()
+      }
+    },
+
+    sendSMS () {
       const { form: { validateFields }, state } = this
 
       validateFields(['mobile'], { force: true }, async (err, values) => {
@@ -251,11 +280,11 @@ export default {
 
           const hide = this.$message.loading('验证码发送中..', 0)
           const rsp = await getSmsCaptcha(values.mobile, login_proto.VerType.LoginVerify)
-          if (rsp !== null && rsp.ret_code === 0) {
+          if (rsp !== null && rsp.retCode === SUCC_CODE) {
             setTimeout(hide, 2500)
             this.$notification['success']({
               message: '提示',
-              description: '验证码发送成功~，您的验证码为：' + res.result.captcha,
+              description: '验证码获取成功，请手机查看验证码！',
               duration: 8
             })
           } else {
@@ -263,7 +292,7 @@ export default {
             clearInterval(interval)
             state.time = 60
             state.smsSendBtn = false
-            this.requestFailed(err)
+            this.requestFailed('验证码请求', rsp)
           }
         }
       })
@@ -300,13 +329,32 @@ export default {
       }, 1000)
       this.isLoginError = false
     },
-    requestFailed (err) {
+    requestFailed (reqName, rsp) {
+      if (rsp === null) {
+        this.$notification['error']({
+          message: '错误',
+          description: `${reqName}出现错误，请稍后再试！`,
+          duration: 4
+        })
+      }
+      else {
+        if (rsp.retCode === REQ_LIMITED_ERR) {
+          this.$notification['error']({
+            message: '错误',
+            description: `${reqName}太过频繁，请稍后再试！`,
+            duration: 4
+          })
+        }
+        else {
+          this.$notification['error']({
+            message: '错误',
+            description: `${reqName}出现错误，请稍后再试！错误码: ${rsp.retCode}`,
+            duration: 4
+          })
+        }
+      }
+
       this.isLoginError = true
-      this.$notification['error']({
-        message: '错误',
-        description: ((err.response || {}).data || {}).message || '请求出现错误，请稍后再试',
-        duration: 4
-      })
     }
   }
 }

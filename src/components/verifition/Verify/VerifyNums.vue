@@ -126,6 +126,7 @@ export default {
             // 在这里处理验证码的提交逻辑
             console.log('用户输入的验证码:', this.userInput)
 
+            this.text = null
             const rsp = await sendCode(this.code_id, this.userInput)
             if (rsp !== null && rsp.retCode === SUCC_CODE) {
                 // 验证成功
@@ -137,7 +138,7 @@ export default {
                     setTimeout(() => {
                         this.$parent.clickShow = false
                         // this.refresh()
-                    }, 3000)
+                    }, 1500)
                 }
                 this.$parent.$emit('success')
             } else {

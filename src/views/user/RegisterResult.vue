@@ -1,6 +1,6 @@
 <template>
   <a-result
-    :isSuccess="true"
+    :isSuccess="isSuccess"
     :content="false"
     :title="email"
     :status="'success'"
@@ -25,6 +25,9 @@ export default {
     }
   },
   computed: {
+    isSuccess() {
+      return this.form && this.form.success
+    },
     email () {
       return this.form && this.form.title || ''
     }

@@ -156,3 +156,24 @@ export function scorePassword (pass) {
 
   return parseInt(score)
 }
+
+export function checkPassword (pass) {
+  if (!pass || pass.length < 8) {
+    return false
+  }
+
+  // bonus points for mixing it up
+  const variations = {
+      digits: /\d/.test(pass),
+      lower: /[a-z]/.test(pass),
+      upper: /[A-Z]/.test(pass),
+      nonWords: /\W/.test(pass)
+  }
+
+  let variationCount = 0
+  for (var check in variations) {
+      variationCount += (variations[check] === true) ? 1 : 0
+  }
+
+  return variationCount >= 2
+}

@@ -107,9 +107,10 @@
 import { getSmsCaptcha } from '@/api/login'
 import { register } from '@/api/register'
 import { deviceMixin } from '@/store/device-mixin'
-import { scorePassword } from '@/utils/util'
+import { checkPassword, scorePassword } from '@/utils/util'
 import Verify from "@/components/verifition/Verify";
 import { login_proto } from '@/proto/login_proto/login_proto'
+import { SUCC_CODE, REQ_LIMITED_ERR } from '@/store/retcode';
 
 const levelNames = {
   0: 'user.password.strength.short',
@@ -168,7 +169,7 @@ export default {
        return callback()
       }
       console.log('scorePassword ; ', scorePassword(value))
-      if (value.length >= 6) {
+      if (checkPassword(value)) {
         if (scorePassword(value) >= 30) {
           this.state.level = 1
         }
@@ -220,19 +221,15 @@ export default {
       const { form: { validateFields }, state, requestFailed, $router } = this
       validateFields({ force: true }, async (err, values) => {
         if (!err) {
-          debugger
-
           state.passwordLevelChecked = false
 
-          // #TODO: 发送注册请求
-          const rsp = await register(values['mobile'], values['password'], values['capture'])
-          if (rsp !== null && rsp.ret_code === 0) {
-            $router.push({ name: 'registerResult', params: { title:  `你的账户：${values['mobile']} 注册成功~` } })
+          const rsp = await register(values['mobile'], values['password'], values['captcha'])
+          if (rsp !== null && rsp.retCode === SUCC_CODE) {
+            $router.push({ name: 'registerResult', params: { success: true, title:  `你的账户：${values['mobile']} 注册成功~` } })
           }
           else {
-            // #TODO:
-            $router.push({ name: 'registerResult', params: { title:  `你的账户：${values['mobile']} 注册成功~` } })
-            requestFailed('注册请求')
+            // $router.push({ name: 'registerResult', params: { success: false, title:  `你的账户：${values['mobile']} 注册失败` } })
+            requestFailed('登录请求', rsp)
           }
         }
       })
@@ -243,8 +240,8 @@ export default {
       this.$refs.verify.refresh();
     },
 
-    captureSuccess(e) {
-      e.preventDefault()
+    captureSuccess() {
+      //e.preventDefault()
       const { form: { validateFields }, state, $message, $notification } = this
 
       validateFields(['mobile'], { force: true },
@@ -262,11 +259,11 @@ export default {
 
             const hide = $message.loading('验证码发送中..', 0)
             const rsp = await getSmsCaptcha(values.mobile, login_proto.VerType.RegisterVerify)
-            if (rsp !== null && rsp.ret_code === 0) {
+            if (rsp !== null && rsp.retCode === SUCC_CODE) {
               setTimeout(hide, 2500)
               $notification['success']({
                 message: '提示',
-                description: '验证码获取成功，您的验证码为：' + res.result.captcha,
+                description: '验证码获取成功，请手机查看验证码！',
                 duration: 8
               })
             }
@@ -275,18 +272,37 @@ export default {
               clearInterval(interval)
               state.time = 60
               state.smsSendBtn = false
-              this.requestFailed(err)
+              this.requestFailed('验证码请求', rsp)
             }
           }
         }
       )
     },
-    requestFailed (err) {
-      this.$notification['error']({
-        message: '错误',
-        description: ((err.response || {}).data || {}).message || '请求出现错误，请稍后再试',
-        duration: 4
-      })
+    requestFailed (reqName, rsp) {
+      if (rsp === null) {
+        this.$notification['error']({
+          message: '错误',
+          description: `${reqName}出现错误，请稍后再试！`,
+          duration: 4
+        })
+      }
+      else {
+        if (rsp.retCode === REQ_LIMITED_ERR) {
+          this.$notification['error']({
+            message: '错误',
+            description: `${reqName}太过频繁，请稍后再试！`,
+            duration: 4
+          })
+        }
+        else {
+          this.$notification['error']({
+            message: '错误',
+            description: `${reqName}出现错误，请稍后再试！错误码: ${rsp.retCode}`,
+            duration: 4
+          })
+        }
+      }
+
       this.registerBtn = false
     }
   },

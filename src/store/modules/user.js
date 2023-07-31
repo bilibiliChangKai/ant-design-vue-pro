@@ -3,6 +3,7 @@ import expirePlugin from 'store/plugins/expire'
 import { login, getInfo, logout } from '@/api/login'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
+import { requestTest } from '@/api/test'
 
 storage.addPlugin(expirePlugin)
 const user = {
@@ -37,15 +38,25 @@ const user = {
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
-      return new Promise((resolve, reject) => {
-        login(userInfo).then(response => {
-          const result = response.result
-          storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', result.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+      return new Promise(async (resolve, reject) => {
+        
+        // // #TODO: test
+        // requestTest()
+        // return
+
+        const rsp = await login(userInfo);
+        resolve(rsp)
+        
+          // debugger
+          // const result = response.result
+          // if (result === 0) {
+          //   storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+          //   commit('SET_TOKEN', result.token)
+          //   resolve()
+          // } else {
+          //   storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+          //   commit('SET_TOKEN', result.token)
+
       })
     },
 

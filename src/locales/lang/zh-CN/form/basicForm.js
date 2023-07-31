@@ -37,7 +37,7 @@ export default {
   'form.basic-form.userName.required': '请输入用户名!',
   'form.basic-form.password.required': '请输入密码！',
   'form.basic-form.password.twice': '两次输入的密码不匹配!',
-  'form.basic-form.strength.msg': '请至少输入 6 个字符。请不要使用容易被猜到的密码。',
+  'form.basic-form.strength.msg': '请至少输入 8 个字符，必须包含字母和数字。请不要使用容易被猜到的密码。',
   'form.basic-form.strength.strong': '强度：强',
   'form.basic-form.strength.medium': '强度：中',
   'form.basic-form.strength.short': '强度：太短',
