@@ -139,7 +139,7 @@ export default {
 
       .main {
         min-width: 260px;
-        width: 368px;
+        width: 900px;
         margin: 0 auto;
       }
 
