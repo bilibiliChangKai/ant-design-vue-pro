@@ -225,12 +225,10 @@ export default {
 
           // #TODO: 发送重置密码的
           const rsp = await resetPswd(values['mobile'], values['password'], values['captcha'])
-          if (rsp !== null && rsp.ret_code === 0) {
-            $router.push({ name: 'registerResult', params: { title: `你的账户：${values['mobile']} 重置密码成功~` } })
+          if (rsp !== null && rsp.retCode === SUCC_CODE) {
+            $router.push({ name: 'registerResult', params: { success: true, title: `你的账户：${values['mobile']} 重置密码成功~` } })
           }
           else {
-            // #TODO:
-            // $router.push({ name: 'registerResult', params: { title: `你的账户：${values['mobile']} 重置密码成功~` } })
             requestFailed('重置密码请求', rsp)
           }
         }
@@ -242,8 +240,8 @@ export default {
       this.$refs.verify.refresh();
     },
 
-    captureSuccess(e) {
-      e.preventDefault()
+    captureSuccess() {
+      // e.preventDefault()
       const { form: { validateFields }, state, $message, $notification } = this
 
       validateFields(['mobile'], { force: true },
@@ -260,7 +258,7 @@ export default {
             }, 1000)
 
             const hide = $message.loading('验证码发送中..', 0)
-            const rsp = await getSmsCaptcha(values.mobile, login_proto.VerType.RegisterVerify)
+            const rsp = await getSmsCaptcha(values.mobile, login_proto.VerType.ResetPsWdVerify)
             if (rsp !== null && rsp.retCode === SUCC_CODE) {
               setTimeout(hide, 2500)
               $notification['success']({

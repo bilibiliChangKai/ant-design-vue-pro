@@ -56,7 +56,7 @@ export function encryptPsw (username, password) {
 
   // 生成随机密钥和时间戳
   const randomKey = generateRandomString() // 随机生成 16 个字节的密钥
-  const timestamp = Date.now()
+  const timestamp = Math.trunc(Date.now() / 1000)  // 这里使用秒的时间戳
 
   // 拼接需要加密的数据
   const dataToEncrypt = username + ';' + md5Psw + ';' + timestamp + ';' + randomKey
@@ -64,12 +64,6 @@ export function encryptPsw (username, password) {
   // 使用 AES 加密数据
   const encryptedData = encryptAES(dataToEncrypt, S2)
 
-  // const aesKey = Buffer.from(S2, 'hex');
-  // const aesCtr = new aesjs.ModeOfOperation.ecb(aesKey);
-  // const encryptedBytes = aesCtr.encrypt(aesjs.utils.utf8.toBytes(dataToEncrypt));
-  // const encryptedData = aesjs.utils.hex.fromBytes(encryptedBytes);
-
-  console.log('A1:', encryptedData)
   return encryptedData
 }
 
