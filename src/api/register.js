@@ -3,7 +3,7 @@ import { login_proto } from '@/proto/login_proto/login_proto'
 import { minifyBts } from './util'
 
 const userApi = {
-  Register: '/api/get-machine-verify',
+  Register: '/api/user-register',
   ResetPswd: '/api/reset-pswd'
 }
 
@@ -22,7 +22,7 @@ export async function register (phoneNumber, pswd, code) {
   return new Promise((resolve, reject) => {
     const req = login_proto.UserRegisterReq.create()
     req.phoneNumber = phoneNumber
-    req.pswd = pswd
+    req.passwd = pswd
     req.verCode = code
 
     const bts = login_proto.UserRegisterReq.encode(req).finish()
@@ -48,6 +48,7 @@ export async function register (phoneNumber, pswd, code) {
     })
   })
 }
+
 export async function resetPswd (phoneNumber, pswd, code) {
   return new Promise((resolve, reject) => {
     const req = login_proto.ResetPswdReq.create()

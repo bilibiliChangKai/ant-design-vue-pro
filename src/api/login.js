@@ -87,7 +87,6 @@ export async function login (loginData) {
   })
 }
 
-// #TODO: 发送验证码
 export async function getSmsCaptcha (phoneNumber, codeType) {
   return new Promise((resolve, reject) => {
     const req = login_proto.SendTextVerCodeReq.create()
