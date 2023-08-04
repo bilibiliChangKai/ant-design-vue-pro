@@ -33,7 +33,7 @@
                 v-for="(style, index) in styles"
                 :key="index"
               >
-                <image-loader :src="style.image" style="width: 60%" />
+                <img :src="style.image" style="width: 60%" />
                 <div class="image-description">{{ style.description }}</div>
               </div>
             </div>
@@ -46,8 +46,8 @@
             <span class="section-title">生成结果</span>
             <div class="result-container">
               <div class="result-image">
-                <image-loader :src="resultImage" fit="contain" />
-                <image-loader
+                <img :src="resultImage" fit="contain" />
+                <img
                   v-for="(thumbnail, index) in thumbnailList"
                   :key="index"
                   :src="thumbnail"
