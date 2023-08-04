@@ -18,7 +18,12 @@ router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
   to.meta && typeof to.meta.title !== 'undefined' && setDocumentTitle(`${i18nRender(to.meta.title)} - ${domTitle}`)
   /* has token */
-  const token = storage.get(ACCESS_TOKEN)
+  //debugger
+
+  let token = storage.get(ACCESS_TOKEN)
+  // #TODO: 测试
+  token = undefined
+  //token = '123123123'
   if (token) {
     if (to.path === loginRoutePath) {
       next({ path: defaultRoutePath })
