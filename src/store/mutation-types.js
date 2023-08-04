@@ -1,6 +1,9 @@
 export const ACCESS_TOKEN = 'token'
 // export const ACCESS_TOKEN = 'Access-Token'
 
+export const DATASOURCE_JSON = 'datasource'
+export const JWT = 'jwt'
+
 export const SIDEBAR_TYPE = 'sidebar_type'
 export const TOGGLE_MOBILE_TYPE = 'is_mobile'
 export const TOGGLE_NAV_THEME = 'nav_theme'
