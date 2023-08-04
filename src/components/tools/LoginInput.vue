@@ -45,7 +45,7 @@
 <script>
 import { requestTest } from '@/api/test'
 import storage from 'store'
-import { DATASOURCE_JSON } from '@/store/mutation-types'
+import { DATASOURCE_JSON, JWT } from '@/store/mutation-types'
 
 export default {
     data() {
@@ -133,21 +133,23 @@ export default {
             URL.revokeObjectURL(url);
         },
         async sendReq() {
-            if (this.dataSource == null || this.dataSource.length == 0) {
+            let that = this;
+
+            if (that.dataSource == null || that.dataSource.length == 0) {
                 return
             }
+            
+            storage.set(DATASOURCE_JSON, this.ToJson(that))
+            storage.set(JWT, that.jwt)
 
-            storage.set(DATASOURCE_JSON, this.ToJson(this))
-            storage.set(JWT, this.jwt)
+            const { $notification } = that
 
-            const { $notification } = this
-
-            const protoJson = this.getProtoJson()
-            const dataJson = this.getDataJson()
-            const url = this.url + this.api
+            const protoJson = that.getProtoJson()
+            const dataJson = that.getDataJson()
+            const url = that.url + that.api
 
             try {
-                var rsp = await requestTest(this.url, this.api, protoJson, dataJson)
+                var rsp = await requestTest(that.url, that.api, protoJson, dataJson)
                 $notification['success']({
                     message: '提示',
                     description: '协议请求成功，发送地址：' + url,
