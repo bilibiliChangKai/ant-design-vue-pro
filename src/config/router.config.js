@@ -23,24 +23,24 @@ export const asyncRouterMap = [
         component: RouteView,
         meta: { title: '基础绘图', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
         children: [
-          {
-            path: '/base/test-page',
-            name: 'TestPage',
-            component: () => import('@/views/other/TextToImage'),
-            meta: { title: '风景图绘制', keepAlive: true }
-          },
-          {
-            path: '/base/test-module',
-            name: 'TestModule',
-            component: () => import('@/views/other/TestModule'),
-            meta: { title: '测试组件', keepAlive: true }
-          },
-          {
-            path: '/base/test-image',
-            name: 'TestImage',
-            component: () => import('@/views/other/TestImage'),
-            meta: { title: '其他功能', keepAlive: true }
-          }
+          // {
+          //   path: '/base/test-page',
+          //   name: 'TestPage',
+          //   component: () => import('@/views/other/TextToImage'),
+          //   meta: { title: '风景图绘制', keepAlive: true }
+          // },
+          // {
+          //   path: '/base/test-module',
+          //   name: 'TestModule',
+          //   component: () => import('@/views/other/TestModule'),
+          //   meta: { title: '测试组件', keepAlive: true }
+          // },
+          // {
+          //   path: '/base/test-image',
+          //   name: 'TestImage',
+          //   component: () => import('@/views/other/TestImage'),
+          //   meta: { title: '其他功能', keepAlive: true }
+          // }
         ]
       },
       // // dashboard
