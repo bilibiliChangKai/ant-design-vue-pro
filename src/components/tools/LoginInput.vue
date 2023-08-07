@@ -135,7 +135,7 @@ export default {
         async sendReq() {
             let that = this;
 
-            if (that.dataSource == null || that.dataSource.length == 0) {
+            if (that.dataSource == null) {
                 return
             }
             
@@ -166,6 +166,10 @@ export default {
         },
 
         getProtoJson() {
+            if (this.dataSource == null || this.dataSource.length == 0) {
+                return `{}`
+            }
+
             var innerStr = this.getSingleProtoJson(this.dataSource[0])
             for (let i = 1; i < this.dataSource.length; i++) {
                 innerStr += ', ' + this.getSingleProtoJson(this.dataSource[i])
@@ -180,7 +184,7 @@ export default {
 
         getDataJson() {
             if (this.dataSource == null || this.dataSource.length == 0) {
-                return null
+                return `{}`
             }
             
             var innerStr = this.getSingleDataJson(this.dataSource[0])
