@@ -40,7 +40,7 @@ export default {
   'form.basic-form.strength.msg': '请至少输入 8 个字符，必须包含字母和数字。请不要使用容易被猜到的密码。',
   'form.basic-form.strength.strong': '强度：强',
   'form.basic-form.strength.medium': '强度：中',
-  'form.basic-form.strength.short': '强度：太短',
+  'form.basic-form.strength.short': '不满足要求',
   'form.basic-form.confirm-password.required': '请确认密码！',
   'form.basic-form.phone-number.required': '请输入手机号！',
   'form.basic-form.phone-number.wrong-format': '手机号格式错误！',

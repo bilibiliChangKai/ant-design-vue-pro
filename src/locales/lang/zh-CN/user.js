@@ -36,7 +36,7 @@ export default {
   'user.password.strength.strong': '强度：强',
   'user.password.strength.medium': '强度：中',
   'user.password.strength.low': '强度：低',
-  'user.password.strength.short': '强度：太短',
+  'user.password.strength.short': '不满足要求',
   'user.confirm-password.required': '请确认密码！',
   'user.phone-number.required': '请输入正确的手机号',
   'user.phone-number.wrong-format': '手机号格式错误！',
