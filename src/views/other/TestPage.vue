@@ -42,7 +42,6 @@
 
 <script>
 import { ref } from 'vue'
-import { getImageUrl } from '@/api/test'
 
 export default {
   setup () {

@@ -68,7 +68,6 @@
 
 <script>
 import { ref } from 'vue'
-import { getImageUrl } from '@/api/test'
 import { login_proto } from '@/proto/login_proto/login_proto'
 
 export default {
