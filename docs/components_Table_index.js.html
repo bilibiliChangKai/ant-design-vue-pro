@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Table/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Table/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import T from 'ant-design-vue/es/table/Table'
+import get from 'lodash.get'
+
+export default {
+  data () {
+    return {
+      needTotalList: [],
+
+      selectedRows: [],
+      selectedRowKeys: [],
+
+      localLoading: false,
+      localDataSource: [],
+      localPagination: Object.assign({}, this.pagination),
+
+      // 存储表格onchange时的filters， sorter对象
+      filters: {},
+      sorter: {}
+    }
+  },
+  props: Object.assign({}, T.props, {
+    rowKey: {
+      type: [String, Function],
+      default: 'key'
+    },
+    data: {
+      type: Function,
+      required: true
+    },
+    pageNum: {
+      type: Number,
+      default: 1
+    },
+    pageSize: {
+      type: Number,
+      default: 10
+    },
+    showSizeChanger: {
+      type: Boolean,
+      default: true
+    },
+    size: {
+      type: String,
+      default: 'default'
+    },
+    /**
+     * alert: {
+     *   show: true,
+     *   clear: Function
+     * }
+     */
+    alert: {
+      type: [Object, Boolean],
+      default: null
+    },
+    rowSelection: {
+      type: Object,
+      default: null
+    },
+    /** @Deprecated */
+    showAlertInfo: {
+      type: Boolean,
+      default: false
+    },
+    showPagination: {
+      type: String | Boolean,
+      default: 'auto'
+    },
+    /**
+     * enable page URI mode
+     *
+     * e.g:
+     * /users/1
+     * /users/2
+     * /users/3?queryParam=test
+     * ...
+     */
+    pageURI: {
+      type: Boolean,
+      default: false
+    }
+  }),
+  watch: {
+    'localPagination.current' (val) {
+      this.pageURI &amp;&amp; this.$router.push({
+        ...this.$route,
+        name: this.$route.name,
+        params: Object.assign({}, this.$route.params, {
+          pageNo: val
+        })
+      })
+      // change pagination, reset total data
+      this.needTotalList = this.initTotalList(this.columns)
+      this.selectedRowKeys = []
+      this.selectedRows = []
+    },
+    pageNum (val) {
+      Object.assign(this.localPagination, {
+        current: val
+      })
+    },
+    pageSize (val) {
+      Object.assign(this.localPagination, {
+        pageSize: val
+      })
+    },
+    showSizeChanger (val) {
+      Object.assign(this.localPagination, {
+        showSizeChanger: val
+      })
+    }
+  },
+  created () {
+    const { pageNo } = this.$route.params
+    const localPageNum = this.pageURI &amp;&amp; (pageNo &amp;&amp; parseInt(pageNo)) || this.pageNum
+    this.localPagination = ['auto', true].includes(this.showPagination) &amp;&amp; Object.assign({}, this.localPagination, {
+      current: localPageNum,
+      pageSize: this.pageSize,
+      showSizeChanger: this.showSizeChanger
+    }) || false
+    this.needTotalList = this.initTotalList(this.columns)
+    this.loadData()
+  },
+  methods: {
+    /**
+     * 表格重新加载方法
+     * 如果参数为 true, 则强制刷新到第一页
+     * @param Boolean bool
+     */
+    refresh (bool = false) {
+      bool &amp;&amp; (this.localPagination = Object.assign({}, {
+        current: 1, pageSize: this.pageSize
+      }))
+      this.loadData()
+    },
+    /**
+     * 加载数据方法
+     * @param {Object} pagination 分页选项器
+     * @param {Object} filters 过滤条件
+     * @param {Object} sorter 排序条件
+     */
+    loadData (pagination, filters = this.filters, sorter = this.sorter) {
+      this.filters = filters
+      this.sorter = sorter
+
+      this.localLoading = true
+      const parameter = Object.assign({
+        pageNo: (pagination &amp;&amp; pagination.current) ||
+          this.showPagination &amp;&amp; this.localPagination.current || this.pageNum,
+        pageSize: (pagination &amp;&amp; pagination.pageSize) ||
+          this.showPagination &amp;&amp; this.localPagination.pageSize || this.pageSize
+      },
+      (sorter &amp;&amp; sorter.field &amp;&amp; {
+        sortField: sorter.field
+      }) || {},
+      (sorter &amp;&amp; sorter.order &amp;&amp; {
+        sortOrder: sorter.order
+      }) || {}, {
+        ...filters
+      }
+      )
+      const result = this.data(parameter)
+      // 对接自己的通用数据接口需要修改下方代码中的 r.pageNo, r.totalCount, r.data
+      // eslint-disable-next-line
+      if ((typeof result === 'object' || typeof result === 'function') &amp;&amp; typeof result.then === 'function') {
+        result.then(r => {
+          this.localPagination = this.showPagination &amp;&amp; Object.assign({}, this.localPagination, {
+            current: r.pageNo, // 返回结果中的当前分页数
+            total: r.totalCount, // 返回结果中的总记录数
+            showSizeChanger: this.showSizeChanger,
+            pageSize: (pagination &amp;&amp; pagination.pageSize) ||
+              this.localPagination.pageSize
+          }) || false
+          // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
+          if (r.data.length === 0 &amp;&amp; this.showPagination &amp;&amp; this.localPagination.current > 1) {
+            this.localPagination.current--
+            this.loadData()
+            return
+          }
+
+          // 这里用于判断接口是否有返回 r.totalCount 且 this.showPagination = true 且 pageNo 和 pageSize 存在 且 totalCount 小于等于 pageNo * pageSize 的大小
+          // 当情况满足时，表示数据不满足分页大小，关闭 table 分页功能
+          try {
+            if ((['auto', true].includes(this.showPagination) &amp;&amp; r.totalCount &lt;= (r.pageNo * this.localPagination.pageSize))) {
+              this.localPagination.hideOnSinglePage = true
+            }
+          } catch (e) {
+            this.localPagination = false
+          }
+          this.localDataSource = r.data // 返回结果中的数组数据
+        })
+        .finally(() => {
+          this.localLoading = false
+        })
+      }
+    },
+    initTotalList (columns) {
+      const totalList = []
+      columns &amp;&amp; columns instanceof Array &amp;&amp; columns.forEach(column => {
+        if (column.needTotal) {
+          totalList.push({
+            ...column,
+            total: 0
+          })
+        }
+      })
+      return totalList
+    },
+    /**
+     * 用于更新已选中的列表数据 total 统计
+     * @param selectedRowKeys
+     * @param selectedRows
+     */
+    updateSelect (selectedRowKeys, selectedRows) {
+      this.selectedRows = selectedRows
+      this.selectedRowKeys = selectedRowKeys
+      const list = this.needTotalList
+      this.needTotalList = list.map(item => {
+        return {
+          ...item,
+          total: selectedRows.reduce((sum, val) => {
+            const total = sum + parseInt(get(val, item.dataIndex))
+            return isNaN(total) ? 0 : total
+          }, 0)
+        }
+      })
+    },
+    /**
+     * 清空 table 已选中项
+     */
+    clearSelected () {
+      if (this.rowSelection) {
+        this.rowSelection.onChange([], [])
+        this.updateSelect([], [])
+      }
+    },
+    /**
+     * 处理交给 table 使用者去处理 clear 事件时，内部选中统计同时调用
+     * @param callback
+     * @returns {*}
+     */
+    renderClear (callback) {
+      if (this.selectedRowKeys.length &lt;= 0) return null
+      return (
+        &lt;a style="margin-left: 24px" onClick={() => {
+          callback()
+          this.clearSelected()
+        }}>清空&lt;/a>
+      )
+    },
+    renderAlert () {
+      // 绘制统计列数据
+      const needTotalItems = this.needTotalList.map((item) => {
+        return (&lt;span style="margin-right: 12px">
+          {item.title}总计 &lt;a style="font-weight: 600">{!item.customRender ? item.total : item.customRender(item.total)}&lt;/a>
+        &lt;/span>)
+      })
+
+      // 绘制 清空 按钮
+      const clearItem = (typeof this.alert.clear === 'boolean' &amp;&amp; this.alert.clear) ? (
+        this.renderClear(this.clearSelected)
+      ) : (this.alert !== null &amp;&amp; typeof this.alert.clear === 'function') ? (
+        this.renderClear(this.alert.clear)
+      ) : null
+
+      // 绘制 alert 组件
+      return (
+        &lt;a-alert showIcon={true} style="margin-bottom: 16px">
+          &lt;template slot="message">
+            &lt;span style="margin-right: 12px">已选择: &lt;a style="font-weight: 600">{this.selectedRows.length}&lt;/a>&lt;/span>
+            {needTotalItems}
+            {clearItem}
+          &lt;/template>
+        &lt;/a-alert>
+      )
+    }
+  },
+
+  render () {
+    const props = {}
+    const localKeys = Object.keys(this.$data)
+    const showAlert = (typeof this.alert === 'object' &amp;&amp; this.alert !== null &amp;&amp; this.alert.show) &amp;&amp; typeof this.rowSelection.selectedRowKeys !== 'undefined' || this.alert
+
+    Object.keys(T.props).forEach(k => {
+      const localKey = `local${k.substring(0, 1).toUpperCase()}${k.substring(1)}`
+      if (localKeys.includes(localKey)) {
+        props[k] = this[localKey]
+        return props[k]
+      }
+      if (k === 'rowSelection') {
+        if (showAlert &amp;&amp; this.rowSelection) {
+          // 如果需要使用alert，则重新绑定 rowSelection 事件
+          props[k] = {
+            ...this.rowSelection,
+            selectedRows: this.selectedRows,
+            selectedRowKeys: this.selectedRowKeys,
+            onChange: (selectedRowKeys, selectedRows) => {
+              this.updateSelect(selectedRowKeys, selectedRows)
+              typeof this[k].onChange !== 'undefined' &amp;&amp; this[k].onChange(selectedRowKeys, selectedRows)
+            }
+          }
+          return props[k]
+        } else if (!this.rowSelection) {
+          // 如果没打算开启 rowSelection 则清空默认的选择项
+          props[k] = null
+          return props[k]
+        }
+      }
+      this[k] &amp;&amp; (props[k] = this[k])
+      return props[k]
+    })
+    const table = (
+      &lt;a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData} onExpand={ (expanded, record) => { this.$emit('expand', expanded, record) } }>
+        { Object.keys(this.$slots).map(name => (&lt;template slot={name}>{this.$slots[name]}&lt;/template>)) }
+      &lt;/a-table>
+    )
+
+    return (
+      &lt;div class="table-wrapper">
+        { showAlert ? this.renderAlert() : null }
+        { table }
+      &lt;/div>
+    )
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="login_proto.html">login_proto</a></li></ul><h3>Classes</h3><ul><li><a href="login_proto.EmptyReq.html">EmptyReq</a></li><li><a href="login_proto.EmptyRsp.html">EmptyRsp</a></li><li><a href="login_proto.GetMachineVerifyReq.html">GetMachineVerifyReq</a></li><li><a href="login_proto.GetMachineVerifyRsp.html">GetMachineVerifyRsp</a></li><li><a href="login_proto.Login.html">Login</a></li><li><a href="login_proto.ResetPswdReq.html">ResetPswdReq</a></li><li><a href="login_proto.ResetPswdRsp.html">ResetPswdRsp</a></li><li><a href="login_proto.SendMachineVerifyResultReq.html">SendMachineVerifyResultReq</a></li><li><a href="login_proto.SendMachineVerifyResultRsp.html">SendMachineVerifyResultRsp</a></li><li><a href="login_proto.SendTextVerCodeReq.html">SendTextVerCodeReq</a></li><li><a href="login_proto.SendTextVerCodeRsp.html">SendTextVerCodeRsp</a></li><li><a href="login_proto.UserPhoneLoginReq.html">UserPhoneLoginReq</a></li><li><a href="login_proto.UserPhoneLoginRsp.html">UserPhoneLoginRsp</a></li><li><a href="login_proto.UserPswdLoginReq.html">UserPswdLoginReq</a></li><li><a href="login_proto.UserPswdLoginRsp.html">UserPswdLoginRsp</a></li><li><a href="login_proto.UserRegisterReq.html">UserRegisterReq</a></li><li><a href="login_proto.UserRegisterRsp.html">UserRegisterRsp</a></li></ul><h3>Interfaces</h3><ul><li><a href="login_proto.IEmptyReq.html">IEmptyReq</a></li><li><a href="login_proto.IEmptyRsp.html">IEmptyRsp</a></li><li><a href="login_proto.IGetMachineVerifyReq.html">IGetMachineVerifyReq</a></li><li><a href="login_proto.IGetMachineVerifyRsp.html">IGetMachineVerifyRsp</a></li><li><a href="login_proto.IResetPswdReq.html">IResetPswdReq</a></li><li><a href="login_proto.IResetPswdRsp.html">IResetPswdRsp</a></li><li><a href="login_proto.ISendMachineVerifyResultReq.html">ISendMachineVerifyResultReq</a></li><li><a href="login_proto.ISendMachineVerifyResultRsp.html">ISendMachineVerifyResultRsp</a></li><li><a href="login_proto.ISendTextVerCodeReq.html">ISendTextVerCodeReq</a></li><li><a href="login_proto.ISendTextVerCodeRsp.html">ISendTextVerCodeRsp</a></li><li><a href="login_proto.IUserPhoneLoginReq.html">IUserPhoneLoginReq</a></li><li><a href="login_proto.IUserPhoneLoginRsp.html">IUserPhoneLoginRsp</a></li><li><a href="login_proto.IUserPswdLoginReq.html">IUserPswdLoginReq</a></li><li><a href="login_proto.IUserPswdLoginRsp.html">IUserPswdLoginRsp</a></li><li><a href="login_proto.IUserRegisterReq.html">IUserRegisterReq</a></li><li><a href="login_proto.IUserRegisterRsp.html">IUserRegisterRsp</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AvatarListProps">AvatarListProps</a></li><li><a href="global.html#action">action</a></li><li><a href="global.html#aesEncrypt">aesEncrypt</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#constantRouterMap">constantRouterMap</a></li><li><a href="global.html#cutStrByFullLength">cutStrByFullLength</a></li><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#generator">generator</a></li><li><a href="global.html#generatorDynamicRouter">generatorDynamicRouter</a></li><li><a href="global.html#get2step">get2step</a></li><li><a href="global.html#getCapture">getCapture</a></li><li><a href="global.html#getStrFullLength">getStrFullLength</a></li><li><a href="global.html#hasPermission">hasPermission</a></li><li><a href="global.html#hasRole">hasRole</a></li><li><a href="global.html#listToTree">listToTree</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#pageURI">pageURI</a></li><li><a href="global.html#plugin">plugin</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeLoadingAnimate">removeLoadingAnimate</a></li><li><a href="global.html#showAlertInfo">showAlertInfo</a></li><li><a href="global.html#triggerWindowResizeEvent">triggerWindowResizeEvent</a></li><li><a href="global.html#userNav">userNav</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Aug 09 2023 23:31:52 GMT+0800 (中国标准时间)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
