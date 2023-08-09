@@ -1,9 +1,29 @@
 // 通用部分
 export const SUCC_CODE = 666
 export const REQ_LIMITED_ERR = 1012   // 限频
+export const JWTErr = 1011 // jwt验证失败
 
 // 二维码部分
 export const USER_WRITE_CODE_ERR = 20001  // 用户输入不正确
+
+export function GetErrorString(rsp, reqName) {
+    if (rsp === null) {
+        return `${reqName}出现错误，请稍后再试！`
+      }
+    else {
+        switch (rsp.retCode) {
+            case REQ_LIMITED_ERR:
+                return `${reqName}太过频繁，请稍后再试！`
+            case JWTErr:
+                return `${reqName}出现错误！\n登录信息已过期，请重新登录！`
+            case USER_WRITE_CODE_ERR:
+                return `${reqName}出现错误！\n验证码输入不正确！`
+            
+            default:
+                return `${reqName}出现错误！\n错误码: ${rsp.retCode}`
+        }
+    }
+}
 
 
 // // Package comm 公共库，

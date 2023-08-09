@@ -131,7 +131,7 @@ import { mapActions } from 'vuex'
 import { timeFix, encryptPsw } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
 import { login_proto } from '@/proto/login_proto/login_proto'
-import { SUCC_CODE, REQ_LIMITED_ERR } from '@/store/retcode'
+import { SUCC_CODE, GetErrorString } from '@/store/retcode'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import storage from 'store'
 
@@ -330,29 +330,12 @@ export default {
       this.isLoginError = false
     },
     requestFailed (reqName, rsp) {
-      if (rsp === null) {
-        this.$notification['error']({
+      const errStr = GetErrorString(rsp, reqName)
+      this.$notification['error']({
           message: '错误',
-          description: `${reqName}出现错误，请稍后再试！`,
+          description: errStr,
           duration: 4
         })
-      }
-      else {
-        if (rsp.retCode === REQ_LIMITED_ERR) {
-          this.$notification['error']({
-            message: '错误',
-            description: `${reqName}太过频繁，请稍后再试！`,
-            duration: 4
-          })
-        }
-        else {
-          this.$notification['error']({
-            message: '错误',
-            description: `${reqName}出现错误，请稍后再试！错误码: ${rsp.retCode}`,
-            duration: 4
-          })
-        }
-      }
 
       this.isLoginError = true
     }

@@ -110,7 +110,7 @@ import { deviceMixin } from '@/store/device-mixin'
 import { checkPassword, scorePassword } from '@/utils/util'
 import Verify from "@/components/verifition/Verify";
 import { login_proto } from '@/proto/login_proto/login_proto'
-import { SUCC_CODE, REQ_LIMITED_ERR } from '@/store/retcode';
+import { SUCC_CODE, GetErrorString } from '@/store/retcode';
 
 const levelNames = {
   0: 'user.password.strength.short',
@@ -279,29 +279,12 @@ export default {
       )
     },
     requestFailed (reqName, rsp) {
-      if (rsp === null) {
-        this.$notification['error']({
+      const errStr = GetErrorString(rsp, reqName)
+      this.$notification['error']({
           message: '错误',
-          description: `${reqName}出现错误，请稍后再试！`,
+          description: errStr,
           duration: 4
         })
-      }
-      else {
-        if (rsp.retCode === REQ_LIMITED_ERR) {
-          this.$notification['error']({
-            message: '错误',
-            description: `${reqName}太过频繁，请稍后再试！`,
-            duration: 4
-          })
-        }
-        else {
-          this.$notification['error']({
-            message: '错误',
-            description: `${reqName}出现错误，请稍后再试！错误码: ${rsp.retCode}`,
-            duration: 4
-          })
-        }
-      }
 
       this.registerBtn = false
     }
