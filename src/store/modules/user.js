@@ -53,6 +53,7 @@ const user = {
     GetInfo ({ commit }) {
       return new Promise((resolve, reject) => {
         // 请求后端获取用户信息 /api/user/info
+        debugger
         getInfo().then(response => {
           const { result } = response
           if (result.role && result.role.permissions.length > 0) {
