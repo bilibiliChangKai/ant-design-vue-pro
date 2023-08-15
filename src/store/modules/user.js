@@ -3,6 +3,7 @@ import expirePlugin from 'store/plugins/expire'
 import { login, getInfo, logout } from '@/api/login'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
+import { getUserInfo } from '@/store/modules/user-info'
 
 storage.addPlugin(expirePlugin)
 const user = {
@@ -49,12 +50,13 @@ const user = {
           // debugger
           // const result = response.result
           // if (result === 0) {
-          //   storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+            
           //   commit('SET_TOKEN', result.token)
           //   resolve()
           // } else {
           //   storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
           //   commit('SET_TOKEN', result.token)
+          // }
 
       })
     },
@@ -63,8 +65,7 @@ const user = {
     GetInfo ({ commit }) {
       return new Promise((resolve, reject) => {
         // 请求后端获取用户信息 /api/user/info
-        getInfo().then(response => {
-          const { result } = response
+          const result = getUserInfo()
           if (result.role && result.role.permissions.length > 0) {
             const role = { ...result.role }
             role.permissions = result.role.permissions.map(permission => {
@@ -90,22 +91,15 @@ const user = {
         }).catch(error => {
           reject(error)
         })
-      })
     },
 
     // 登出
     Logout ({ commit, state }) {
-      return new Promise((resolve) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          storage.remove(ACCESS_TOKEN)
-          resolve()
-        }).catch((err) => {
-          console.log('logout fail:', err)
-          // resolve()
-        }).finally(() => {
-        })
+      return new Promise((resolve) => {  
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        storage.remove(ACCESS_TOKEN)
+        resolve()
       })
     }
 

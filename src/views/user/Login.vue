@@ -231,7 +231,7 @@ export default {
           const rsp = await Login(loginParams)
           if (rsp !== null && rsp.retCode === SUCC_CODE) {
             // #TODO: 添加登录成功后逻辑
-            // this.loginSuccess(res)
+            this.loginSuccess(rsp)
           } else {
             this.requestFailed('登录请求', rsp)
           }
