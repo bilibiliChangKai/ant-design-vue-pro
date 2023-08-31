@@ -1,1 +1,2 @@
-call "G:\UGit\wanxianghui\svr_test\main.exe"
+cd  %~dp0\..\wanxianghui\svr_test\
+call "main.exe"
