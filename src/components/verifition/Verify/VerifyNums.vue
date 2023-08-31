@@ -153,7 +153,7 @@ export default {
                         text += ' 输入验证码不正确'
                     }
                     else {
-                        text += '错误码：' + rsp.retCode
+                        text += ' 错误码：' + rsp.retCode
                     }
                 }
                 this.text = text
