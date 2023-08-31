@@ -1,0 +1,1 @@
+call "G:\UGit\wanxianghui\svr_test\main.exe"
